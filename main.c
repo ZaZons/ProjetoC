@@ -4,5 +4,6 @@
 int main()
 {
     printf("Hello world!\n");
+    print("ttest");
     return 0;
 }
