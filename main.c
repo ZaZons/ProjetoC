@@ -51,7 +51,7 @@ int menu (void) // importar valores para mostrar no menu
 
     printf("\tGestão de Pontos de Iluminacao Publica(IP)");
     printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", ); //add totalpontos e pontos avariados
-    printf("Avarias resolvidas: %d\tTecnologia LED (%%): %.1f", ); // add avarias resolvidas e tec led
+    printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.1f", ); // add avarias resolvidas e tec led
     printf("\n   1. Novo ponto IP");
     printf("\n   2. Registo de Avaria");
     printf("\n   3. Registo de Intervencao");
@@ -59,6 +59,6 @@ int menu (void) // importar valores para mostrar no menu
     printf("\n   5. Informacoes");
     printf("\n   6. Gravar");
     printf("\n   0. Sair");
-    printf("\tSelecione a opcao: ");
+    printf("\n\tSelecione a opcao: ");
     scanf(" %d", &opcao);
 }
