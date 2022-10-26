@@ -1,52 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int menu (void);
+/**
+ * importar valores para mostrar no menu
+ * */ 
+int menu ();
 
-int main()
-{
+int main() {
     int opcao;
 
-    do
-    {
-    opcao = menu();
+    do {
+        opcao = menu();
+        switch(opcao) {
+            case 1: 
 
-    switch(opcao)
-    {
-        case 1: 
+                break;
+            case 2:
 
-            break;
+                break;
+            case 3:
+                
+                break;
+            case 4:
 
-        case 2:
+                break;
+            case 5:
 
-            break;
+                break;
+            case 6:
 
-        case 3:
-            
-            break;
+                break;        
+        }
 
-        case 4:
-
-            break;
-
-        case 5:
-
-            break;
-
-        case 6:
-
-            break;        
-    }
-
-    }while(opcao != 0);
-
+    } while (opcao != 0);
 
     return 0;
 }
 
 
-int menu (void) // importar valores para mostrar no menu
-{
+int menu () {
     int opcao = 0;
 
     printf("\tGestão de Pontos de Iluminacao Publica(IP)");
