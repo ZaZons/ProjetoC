@@ -14,7 +14,7 @@ int lerInt(int min, int max)
 
         if(n<min || n>max)
         {
-            printf("Valor inválido, [%d - %d]", min, max);
+            printf("Valor invï¿½lido, [%d - %d]", min, max);
         }
 
     } while (n<min || n>max);
@@ -31,13 +31,13 @@ float lerFloat (int min, int max)
         limparBufferStdin();
     if(n<min || n>max)
         {
-            printf("Valor inválido, [%d - %d]", min, max);
+            printf("Valor invï¿½lido, [%d - %d]", min, max);
         }
     }while(n<min || n>max);
 
     if(n<min || n>max)
     {
-        printf("Valor inválido, [%d - %d]", min, max);
+        printf("Valor invï¿½lido, [%d - %d]", min, max);
     }
 
     return n;
@@ -51,6 +51,7 @@ void lerString (char vetor[], int max)
     {
         fgets(vetor, max, stdin);
         tamanhoString = strlen(vetor);
+        
     } while (tamanhoString == 1);
 
     if(vetor[tamanhoString -1] != '\n')
@@ -124,14 +125,14 @@ int lerIntExato(int limite1, int limite2, int limite3)
     do
     {
         scanf("%d", &n);
-
+        limparBufferStdin();
         if(n != limite1)
         {
             if(n != limite2)
             {
                 if(n != limite3)
                 {
-                    printf("ERRO - O VALOR É INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
+                    printf("ERRO - O VALOR ï¿½ INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
                 }
             }
         }
