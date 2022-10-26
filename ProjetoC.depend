@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1666797414 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoesIP.h"
+	"funcoesLeitura.h"
+
+1666797263 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesip.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoesIP.h"
+	"funcoesLeitura.h"
+
+1666797042 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesip.h
+
+1666797655 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesleitura.h
+

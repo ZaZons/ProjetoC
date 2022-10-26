@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funcoesIP.h"
+#include "funcoesLeitura.h"
 
 int novoPontoIp(tipoIp pontosIp[], int n) {
     if (n >= MAX_IP) {
@@ -23,7 +25,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
         min = 1;
         max = 9999;
         printf("Insira o numero do novo ponto: ");
-        id = lerInteiro(min, max);
+        id = lerInt(min, max);
 
         verificacao = procuraPontoIp(pontosIp, n, id);
 
@@ -38,7 +40,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int tamanhoCpe;
     do {
         printf("\nInsira o CPE (Código de Ponto de Entrega) do novo ponto: ");
-        lerString(cpe);
+        lerString(cpe, MAX_CPE);
 
         tamanhoCpe = strlen(cpe);
 
@@ -54,7 +56,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int limite1 = 33;
     int limite2 = 50;
     int limite3 = 100;
-    printf("\nInsira a potencia da luminária do ponto (em Watts): ");
+    printf("\nInsira a potencia da luminária do ponto (%d, %d, %d): ", limite1, limite2, limite3);
     potencia = lerIntExato(limite1, limite2, limite3);
     novoPonto.potencia = potencia;
 
@@ -85,6 +87,8 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
             strcpy("LED", tipoTecnologia);
             break;
     }
+
+    strcpy(novoPonto.tipoTecnologia, tipoTecnologia);
 }
 
 int procuraPontoIp(tipoIp pontosIp[], int n, int id) {

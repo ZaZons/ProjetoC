@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoesIP.h"
+#include "funcoesLeitura.h"
 
 /**
  * importar valores para mostrar no menu
@@ -42,8 +44,8 @@ int menu () {
     int opcao = 0;
 
     printf("\tGestão de Pontos de Iluminacao Publica(IP)");
-    printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", ); //add totalpontos e pontos avariados
-    printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.1f", ); // add avarias resolvidas e tec led
+    printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", 0, 0); //add totalpontos e pontos avariados
+    printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.1f", 0, 0); // add avarias resolvidas e tec led
     printf("\n   1. Novo ponto IP");
     printf("\n   2. Registo de Avaria");
     printf("\n   3. Registo de Intervencao");

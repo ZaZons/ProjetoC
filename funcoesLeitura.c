@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "FuncoesLeitura.h"
+#include "funcoesLeitura.h"
 
 int lerInt(int min, int max)
 {
@@ -14,30 +14,30 @@ int lerInt(int min, int max)
 
         if(n<min || n>max)
         {
-            printf("Valor inv√°lido, [%d - %d]", min, max);
+            printf("Valor inv·lido, [%d - %d]", min, max);
         }
 
     } while (n<min || n>max);
-    
+
     return n;
 }
 
 float lerFloat (int min, int max)
-{   
+{
     do
-    {    
+    {
         int n;
         scanf(" %f", &n);
         limparBufferStdin();
     if(n<min || n>max)
         {
-            printf("Valor inv√°lido, [%d - %d]", min, max);
-        }   
+            printf("Valor inv·lido, [%d - %d]", min, max);
+        }
     }while(n<min || n>max);
 
     if(n<min || n>max)
     {
-        printf("Valor inv√°lido, [%d - %d]", min, max);
+        printf("Valor inv·lido, [%d - %d]", min, max);
     }
 
     return n;
@@ -56,7 +56,7 @@ void lerString (char vetor[], int max)
     if(vetor[tamanhoString -1] != '\n')
     {
         limparBufferStdin();
-    }   
+    }
 }
 
 void limparBufferStdin(void)
@@ -92,7 +92,7 @@ max = 12;
  if( (novaData.ano%4)==0 && novaData.mes == 2)
  {
     maxDia = 29;
- }  
+ }
 
 switch(novaData.mes)
 {
@@ -131,12 +131,12 @@ int lerIntExato(int limite1, int limite2, int limite3)
             {
                 if(n != limite3)
                 {
-                    printf("ERRO - O VALOR √â INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
+                    printf("ERRO - O VALOR … INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
                 }
             }
         }
 
     } while (n != limite1 && n != limite2 && n != limite3);
-    
+
     return n;
 }
