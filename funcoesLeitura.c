@@ -35,11 +35,6 @@ float lerFloat (int min, int max)
         }   
     }while(n<min || n>max);
 
-    if(n<min || n>max)
-    {
-        printf("Valor inválido, [%d - %d]", min, max);
-    }
-
     return n;
 }
 
@@ -51,6 +46,7 @@ void lerString (char vetor[], int max)
     {
         fgets(vetor, max, stdin);
         tamanhoString = strlen(vetor);
+        
     } while (tamanhoString == 1);
 
     if(vetor[tamanhoString -1] != '\n')
@@ -124,7 +120,7 @@ int lerIntExato(int limite1, int limite2, int limite3)
     do
     {
         scanf("%d", &n);
-
+        limparBufferStdin();
         if(n != limite1)
         {
             if(n != limite2)
