@@ -6,7 +6,7 @@ typedef struct{
     int mes;
     int dia;
     int hora;
-    int min;
+    int minuto;
 }tipoData;
 
 int lerInt(int min, int max);

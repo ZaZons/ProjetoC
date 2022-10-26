@@ -109,13 +109,32 @@ switch(novaData.mes)
 
     default:
         maxDia = 31;
-}
+}novaData.
 
 min = 1;
 max = maxDia;
 printf("Dia: ");
 novaData.dia = lerInt(1, maxDia);
 
+min = 0;
+max = 23;
+do
+{
+    printf("Hora: ");
+    novaData.hora = lerInt(min, max);
+
+}while(novaData.hora < min || novaData.hora > max);
+
+min = 0;
+max = 59;
+do
+{
+    printf("Minutos: ");
+    novaData.minuto = lerInt(min, max);
+
+}while(novaData.minuto < min || novaData.minuto > max);
+
+return novaData;
 }
 
 int lerIntExato(int limite1, int limite2, int limite3)
