@@ -14,7 +14,7 @@ int lerInt(int min, int max)
 
         if(n<min || n>max)
         {
-            printf("Valor inv�lido, [%d - %d]", min, max);
+            invalido(min, max);
         }
 
     } while (n<min || n>max);
@@ -22,23 +22,19 @@ int lerInt(int min, int max)
     return n;
 }
 
-float lerFloat (int min, int max)
+float lerFloat (float min, float max)
 {
+    int n;
     do
     {
-        int n;
+        n;
         scanf(" %f", &n);
         limparBufferStdin();
     if(n<min || n>max)
         {
-            printf("Valor inv�lido, [%d - %d]", min, max);
+            printf("Valor invalido, [%f - %f]: ", min, max);
         }
     }while(n<min || n>max);
-
-    if(n<min || n>max)
-    {
-        printf("Valor inv�lido, [%d - %d]", min, max);
-    }
 
     return n;
 }
@@ -51,7 +47,6 @@ void lerString (char vetor[], int max)
     {
         fgets(vetor, max, stdin);
         tamanhoString = strlen(vetor);
-        
     } while (tamanhoString == 1);
 
     if(vetor[tamanhoString -1] != '\n')
@@ -67,12 +62,11 @@ void limparBufferStdin(void)
     do
     {
         lixo=getchar();
-
     }
     while(lixo!='\n' && lixo != EOF);
 }
 
-tipoData lerData
+tipoData lerData()
 {
  int maxDia, min, max;
  tipoData novaData;
@@ -81,7 +75,7 @@ min = 2022;
 max = 2023;
 
  printf("Ano: ");
- novaData.ano = lerInt( ,)
+ novaData.ano = lerInt(min, max);
 
 
 min = 1;
@@ -151,7 +145,7 @@ int lerIntExato(int limite1, int limite2, int limite3)
             {
                 if(n != limite3)
                 {
-                    printf("ERRO - O VALOR � INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
+                    printf("ERRO - O VALOR E INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
                 }
             }
         }
@@ -159,4 +153,8 @@ int lerIntExato(int limite1, int limite2, int limite3)
     } while (n != limite1 && n != limite2 && n != limite3);
 
     return n;
+}
+
+void invalido(int min, int max) {
+    printf("Valor invalido, [%d - %d]: ", min, max);
 }

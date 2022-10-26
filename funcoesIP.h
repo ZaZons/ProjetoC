@@ -13,21 +13,21 @@ typedef struct {
   char tipoTecnologia[MAX_TECNOLOGIA];
 } tipoIp;
 
-/** 
- * Adiciona um ponto IP ao vetor de pontos já existentes e devolve a quantidade de pontos atualizada.
+/**
+ * Adiciona um ponto IP ao vetor de pontos ja existentes e devolve a quantidade de pontos atualizada.
  * */
-int adicionarPontoIp(tipoIp pontosIp[], int n);
+int novoPontoIp(tipoIp pontosIp[], int n);
 
 /**
- * Obtém os dados dos pontos IP introduzidos pelo utilizador e armazena-as numa nova estrutura do tipo "tipoIp". 
+ * Obtem os dados dos pontos IP introduzidos pelo utilizador e armazena-as numa nova estrutura do tipo "tipoIp".
  * Devolve a estrutura do novo Ponto IP.
  * */
 tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n);
 
 /**
- * Procura por um ponto IP com o mesmo código único que o utilizador inseriu.
- * Caso já exista um ponto com o mesmo código a função retorna a posição desse ponto no vetor.
- * Caso não exista nenhum ponto com o mesmo código então a função retorna -1.
+ * Procura por um ponto IP com o mesmo codigo unico que o utilizador inseriu.
+ * Caso ja exista um ponto com o mesmo codigo a funcao retorna a posicao desse ponto no vetor.
+ * Caso nao exista nenhum ponto com o mesmo codigo entao a funcao retorna -1.
  * */
 int procuraPontoIp(tipoIp pontosIp[], int n, int id);
 

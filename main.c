@@ -5,23 +5,25 @@
 
 /**
  * importar valores para mostrar no menu
- * */ 
+ * */
 int menu ();
 
 int main() {
+    tipoIp pontosIp[MAX_IP];
     int opcao;
+    int quantidadePontos = 0;
 
     do {
         opcao = menu();
         switch(opcao) {
-            case 1: 
-
+            case 1:
+                quantidadePontos = novoPontoIp(pontosIp, quantidadePontos);
                 break;
             case 2:
 
                 break;
             case 3:
-                
+
                 break;
             case 4:
 
@@ -31,7 +33,7 @@ int main() {
                 break;
             case 6:
 
-                break;        
+                break;
         }
 
     } while (opcao != 0);
@@ -55,4 +57,7 @@ int menu () {
     printf("\n   0. Sair");
     printf("\n\tSelecione a opcao: ");
     scanf(" %d", &opcao);
+    limparBufferStdin();
+
+    return opcao;
 }
