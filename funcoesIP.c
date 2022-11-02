@@ -11,6 +11,8 @@ int novoPontoIp(tipoIp pontosIp[], int n) {
         pontosIp[n] = lerDadosPontoIp(pontosIp, n);
         n++;
     }
+
+    return n;
 }
 
 tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
@@ -88,6 +90,8 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     }
 
     strcpy(novoPonto.tipoTecnologia, tipoTecnologia);
+
+    return novoPonto;
 }
 
 int procuraPontoIp(tipoIp pontosIp[], int n, int id) {

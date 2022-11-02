@@ -31,7 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-<<<<<<< Updated upstream
 		<Unit filename="funcoesIP.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -40,12 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoesLeitura.h" />
-=======
 		<Unit filename="funcoesAvaria.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoesAvaria.h" />
->>>>>>> Stashed changes
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

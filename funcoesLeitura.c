@@ -7,11 +7,11 @@ int lerInt(int min, int max) {
     int n;
 
     do {
-        scanf(" %d", &n);
+        scanf("%d", &n);
         limparBufferStdin();
 
         if(n<min || n>max)  {
-            invalido(min, max);
+            printf("Valor invalido, [%d - %d]: ", min, max);
         }
 
     } while (n<min || n>max);
@@ -20,17 +20,16 @@ int lerInt(int min, int max) {
 }
 
 float lerFloat (float min, float max) {
-    int n;
-    
+    float n;
+
     do {
-        n;
-        scanf(" %f", &n);
+        scanf("%f", &n);
         limparBufferStdin();
 
-        if(n<min || n>max) {
+        if ( n < min || n > max) {
             printf("Valor invalido, [%f - %f]: ", min, max);
         }
-    } while (n<min || n>max);
+    } while (n < min || n > max);
 
     return n;
 }
