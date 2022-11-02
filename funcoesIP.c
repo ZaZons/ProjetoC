@@ -30,7 +30,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
         verificacao = procuraPontoIp(pontosIp, n, id);
 
         if (verificacao != -1) {
-            printf("\nERRO - Posto j� existente!");
+            printf("\nERRO - Posto ja existente!");
         }
     } while (verificacao != -1);
     novoPonto.id = id;

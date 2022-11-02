@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="funcoesIP.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoesIP.h" />
+		<Unit filename="funcoesLeitura.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcoesLeitura.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
