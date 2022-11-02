@@ -36,11 +36,10 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     novoPonto.id = id;
 
     // CPE (Codigo de Ponto de Entrega)
-    char cpe[MAX_CPE];
     int tamanhoCpe;
     do {
         printf("\nInsira o CPE (Codigo de Ponto de Entrega) do novo ponto: ");
-        lerString(cpe, MAX_CPE);
+        lerString(novoPonto.cpe, MAX_CPE);
 
         tamanhoCpe = strlen(cpe);
 
@@ -48,7 +47,6 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
             printf("ERRO - O CPE tem %d digitos!", MAX_CPE);
         }
     } while (tamanhoCpe != MAX_CPE);
-    strcpy(novoPonto.cpe, cpe);
 
     // Potencia
     int potencia;
@@ -82,7 +80,6 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     novoPonto.estadoFuncionamento = estadoFuncionamento;
 
     // Tipo de tecnologia
-    char tipoTecnologia[MAX_TECNOLOGIA];
     int intTipo;
     min = 1;
     max = 3;
@@ -91,17 +88,15 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
 
     switch (intTipo) {
         case 1:
-            strcpy("Vapor de mercurio", tipoTecnologia);
+            strcpy("Vapor de mercurio", novoPonto.tipoTecnologia);
             break;
         case 2:
-            strcpy("Vapor de sodio", tipoTecnologia);
+            strcpy("Vapor de sodio", novoPonto.tipoTecnologia);
             break;
         case 3:
-            strcpy("LED", tipoTecnologia);
+            strcpy("LED", novoPonto.tipoTecnologia);
             break;
     }
-
-    strcpy(novoPonto.tipoTecnologia, tipoTecnologia);
 
     return novoPonto;
 }
