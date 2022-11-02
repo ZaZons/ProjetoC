@@ -10,7 +10,7 @@ typedef struct{
 }tipoData;
 
 int lerInt(int min, int max);
-float lerFloat(int min, int max);
+float lerFloat(float min, float max);
 void lerString(char vetor[], int max);
 void limparBufferStdin(void);
 int lerInt3(int limite1, int limite2, int limite3);
