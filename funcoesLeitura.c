@@ -13,7 +13,6 @@ int lerInt(int min, int max) {
         if(n<min || n>max)  {
             printf("Valor invalido, [%d - %d]: ", min, max);
         }
-
     } while (n<min || n>max);
 
     return n;
@@ -109,21 +108,36 @@ tipoData lerData() {
     return novaData;
 }
 
-int lerInt3(int limite1, int limite2, int limite3) {
+int lerEscolhaMultipla(int min, int max) {
     int n;
 
     do {
         scanf("%d", &n);
         limparBufferStdin();
 
-        if (n != limite1) {
-            if (n != limite2) {
-                if (n != limite3) {
-                    printf("ERRO - O VALOR E INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
-                }
-            }
+        if (n < min || n > max) {
+            printf("ERRO - O VALOR E INVALIDO [DE %d A %d]", min, max);
         }
-    } while (n != limite1 && n != limite2 && n != limite3);
+    } while (n < min && n > max);
 
     return n;
 }
+
+// int lerPotencia(int limite1, int limite2, int limite3) {
+//     int n;
+
+//     do {
+//         scanf("%d", &n);
+//         limparBufferStdin();
+
+//         if (n != limite1) {
+//             if (n != limite2) {
+//                 if (n != limite3) {
+//                     printf("ERRO - O VALOR E INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
+//                 }
+//             }
+//         }
+//     } while (n != limite1 && n != limite2 && n != limite3);
+
+//     return n;
+// }

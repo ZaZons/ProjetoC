@@ -2,6 +2,8 @@
 #define FUNCOESIP_H_INCLUDED
 
 #define MAX_IP 50
+#define MIN_IP_ID 1
+#define MAX_IP_ID 9999
 #define MAX_CPE 20
 #define MAX_TECNOLOGIA 20
 

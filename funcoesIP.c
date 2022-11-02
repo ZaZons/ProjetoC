@@ -24,10 +24,8 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int id;
     int verificacao;
     do {
-        min = 1;
-        max = 9999;
         printf("Insira o numero do novo ponto: ");
-        id = lerInt(min, max);
+        id = lerInt(MIN_IP_ID, MAX_IP_ID);
 
         verificacao = procuraPontoIp(pontosIp, n, id);
 
@@ -54,12 +52,26 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
 
     // Potencia
     int potencia;
-    int limite1 = 33;
-    int limite2 = 50;
-    int limite3 = 100;
-    printf("\nInsira a potencia da luminaria do ponto (%d, %d, %d): ", limite1, limite2, limite3);
-    potencia = lerInt3(limite1, limite2, limite3);
-    novoPonto.potencia = potencia;
+    int potencia1 = 33;
+    int potencia2 = 50;
+    int potencia3 = 100;
+    min = 1;
+    max = 3;
+    printf("\nInsira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", potencia1, potencia2, potencia3);
+    potencia = lerEscolhaMultipla(min, max);
+
+    switch (potencia) {
+        case 1:
+            novoPonto.potencia = potencia1;
+            break;
+        case 2:
+            novoPonto.potencia = potencia2;
+            break;
+        case 3:
+            novoPonto.potencia = potencia3;
+            break;
+    }
+    // novoPonto.potencia = potencia;
 
     // Estado de funcionamento
     int estadoFuncionamento;
@@ -75,7 +87,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     min = 1;
     max = 3;
     printf("\nInsira o estado de funcionamento do ponto (1 - Vapor de mercurio / 2 - Vapor de sodio / 3 - LED): ");
-    intTipo = lerInt(min, max);
+    intTipo = lerEscolhaMultipla(min, max);
 
     switch (intTipo) {
         case 1:
