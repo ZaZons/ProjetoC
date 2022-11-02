@@ -110,7 +110,7 @@ tipoData lerData() {
     return novaData;
 }
 
-int lerIntExato(int limite1, int limite2, int limite3) {
+int lerInt3(int limite1, int limite2, int limite3) {
     int n;
 
     do {

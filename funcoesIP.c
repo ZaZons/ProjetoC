@@ -56,7 +56,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int limite2 = 50;
     int limite3 = 100;
     printf("\nInsira a potencia da luminaria do ponto (%d, %d, %d): ", limite1, limite2, limite3);
-    potencia = lerIntExato(limite1, limite2, limite3);
+    potencia = lerInt3(limite1, limite2, limite3);
     novoPonto.potencia = potencia;
 
     // Estado de funcionamento
