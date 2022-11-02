@@ -4,4 +4,5 @@
 #include "funcoesIP.h"
 #include "funcoesLeitura.h"
 #include "funcoesAvaria.h"
+#include "funcoesIntervencao.h"
 
