@@ -15,5 +15,6 @@ void lerString(char vetor[], int max);
 void limparBufferStdin(void);
 int lerEscolhaMultipla(int min, int max);
 int lerInt3(int limite1, int limite2, int limite3);
+tipoData lerData();
 
 #endif // FUNCOESLEITURA_H_INCLUDED

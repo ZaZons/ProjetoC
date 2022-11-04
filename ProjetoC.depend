@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1666796604 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\main.c
+1667405878 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcoesIP.h"
@@ -12,13 +12,23 @@
 	"funcoesIP.h"
 	"funcoesLeitura.h"
 
-1666796604 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesip.h
+1667406919 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesip.h
 
-1667404038 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesleitura.h
+1667575606 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesleitura.h
 
-1666798154 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesleitura.c
+1667410039 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesleitura.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"funcoesLeitura.h"
+
+1667575545 source:c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesavaria.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funcoesIP.h"
+	"funcoesLeitura.h"
+	"funcoesAvaria.h"
+
+1667408521 c:\users\tiagogomes\documents\escolinha\fp\projetoc\funcoesavaria.h
 

@@ -73,7 +73,7 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int n, tipoIp pontosIp[]) {
     }
 
     // Data e hora da avaria
-    printf("\nInsira a data e hora da avaria: ")
+    printf("\nInsira a data e hora da avaria: ");
     novaAvaria.dataAvaria = lerData();
 
     // Breve descricao da avaria

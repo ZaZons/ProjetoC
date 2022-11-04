@@ -41,7 +41,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
         printf("\nInsira o CPE (Codigo de Ponto de Entrega) do novo ponto: ");
         lerString(novoPonto.cpe, MAX_CPE);
 
-        tamanhoCpe = strlen(cpe);
+        tamanhoCpe = strlen(novoPonto.cpe);
 
         if (tamanhoCpe != MAX_CPE) {
             printf("ERRO - O CPE tem %d digitos!", MAX_CPE);
