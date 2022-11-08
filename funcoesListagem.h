@@ -3,9 +3,12 @@
 
 void mostrarListagem(tipoIp pontosIp[], int nPontos, 
     tipoAvaria avarias[], int nAvarias,
-    tipoIntervencao intervencoes[], int nIntervencoes);
+    /* tipoIntervencao intervencoes[] */, int nIntervencoes);
 
-// void mostrarPontosIp(tipoIp pontosIp[], int nPontos);
+void mostrarPontosIp(tipoIp pontosIp[], int nPontos, 
+    tipoAvaria avarias[], int nAvarias,
+    /* tipoIntervencao intervencoes[] */, int nIntervencoes);
 
+void mostrarPontosLed(tipoIp pontosIp[], int nPontos);
 
 #endif // FUNCOESLISTAGEM_H_INCLUDED

@@ -6,14 +6,14 @@
 #include "funcoesAvaria.h"
 
 int registarAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos) {
-    if (n >= MAX_AVARIAS) {
+    if (nAvarias >= MAX_AVARIAS) {
         printf("Numero maximo de avarias atingido.\n");
     } else {
-        avarias[n] = lerDadosAvaria(avarias, nAvarias, pontosIp, nPontos);
-        n++;
+        avarias[nAvarias] = lerDadosAvaria(avarias, nAvarias, pontosIp, nPontos);
+        nAvarias++;
     }
 
-    return n;
+    return nAvarias;
 }
 
 tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos) {
@@ -94,4 +94,15 @@ int procuraAvaria(tipoAvaria avarias[], int n, char codRegisto[]) {
     }
 
     return pos;
+}
+
+int calcularQuantidadeAvarias(tipoAvaria avarias[], int nAvarias, int idPontoIp) {
+    int quantidadeAvarias = 0;
+    for (int i = 0; i < nAvarias; i++) {
+        if (avarias[i].idPontoIp == idPontoIp) {
+            quantidadeAvarias++;
+        }
+    }
+
+    return quantidadeAvarias;
 }
