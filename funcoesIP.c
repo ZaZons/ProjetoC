@@ -20,6 +20,8 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int min;
     int max;
 
+    printf("\n");
+
     // Numero de identificacao
     int id;
     int verificacao;
@@ -30,7 +32,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
         verificacao = procuraPontoIp(pontosIp, n, id);
 
         if (verificacao != -1) {
-            printf("\nERRO - Posto ja existente!");
+            printf("\nERRO - Posto ja existente!\n\n");
         }
     } while (verificacao != -1);
     novoPonto.id = id;
@@ -38,13 +40,13 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     // CPE (Codigo de Ponto de Entrega)
     int tamanhoCpe;
     do {
-        printf("\nInsira o CPE (Codigo de Ponto de Entrega) do novo ponto: ");
+        printf("Insira o CPE (Codigo de Ponto de Entrega) do novo ponto: ");
         lerString(novoPonto.cpe, MAX_CPE);
 
         tamanhoCpe = strlen(novoPonto.cpe);
 
-        if (tamanhoCpe != MAX_CPE) {
-            printf("ERRO - O CPE tem %d digitos!", MAX_CPE);
+        if (tamanhoCpe < MAX_CPE) {
+            printf("\nERRO - O CPE tem de ter obrigatoriamente %d digitos!\n\n", MAX_CPE);
         }
     } while (tamanhoCpe != MAX_CPE);
 
@@ -55,7 +57,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int potencia3 = 100;
     min = 1;
     max = 3;
-    printf("\nInsira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", potencia1, potencia2, potencia3);
+    printf("Insira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", potencia1, potencia2, potencia3);
     potencia = lerEscolhaMultipla(min, max);
 
     switch (potencia) {
@@ -69,13 +71,12 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
             novoPonto.potencia = potencia3;
             break;
     }
-    // novoPonto.potencia = potencia;
 
     // Estado de funcionamento
     int estadoFuncionamento;
     min = 0;
     max = 1;
-    printf("\nInsira o estado de funcionamento do ponto (0 - Avariado / 1 - Funcional): ");
+    printf("Insira o estado de funcionamento do ponto (0 - Avariado / 1 - Funcional): ");
     estadoFuncionamento = lerInt(min, max);
     novoPonto.estadoFuncionamento = estadoFuncionamento;
 
@@ -83,18 +84,18 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     int intTipo;
     min = 1;
     max = 3;
-    printf("\nInsira o estado de funcionamento do ponto (1 - Vapor de mercurio / 2 - Vapor de sodio / 3 - LED): ");
+    printf("Insira o tipo de luminaria do ponto (1 - Vapor de mercurio / 2 - Vapor de sodio / 3 - LED): ");
     intTipo = lerEscolhaMultipla(min, max);
 
     switch (intTipo) {
         case 1:
-            strcpy("Vapor de mercurio", novoPonto.tipoTecnologia);
+            strcpy(novoPonto.tipoTecnologia, "Vapor de mercurio");
             break;
         case 2:
-            strcpy("Vapor de sodio", novoPonto.tipoTecnologia);
+            strcpy(novoPonto.tipoTecnologia, "Vapor de sodio");
             break;
         case 3:
-            strcpy("LED", novoPonto.tipoTecnologia);
+            strcpy(novoPonto.tipoTecnologia, "LED");
             break;
     }
 

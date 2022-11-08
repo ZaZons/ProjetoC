@@ -10,10 +10,11 @@ int lerInt(int min, int max) {
         scanf("%d", &n);
         limparBufferStdin();
 
-        if(n<min || n>max)  {
-            printf("Valor invalido, [%d - %d]: ", min, max);
+        if (n < min || n > max)  {
+            printf("\nERRO - Valor invalido\n\n");
+            printf("Insira um valor que esteja compreendido entre %d e %d: ", min, max);
         }
-    } while (n<min || n>max);
+    } while (n < min || n > max);
 
     return n;
 }
@@ -26,7 +27,8 @@ float lerFloat (float min, float max) {
         limparBufferStdin();
 
         if ( n < min || n > max) {
-            printf("Valor invalido, [%f - %f]: ", min, max);
+            printf("\nERRO - Valor invalido\n\n");
+            printf("Insira um valor que esteja compreendido entre %f e %f: ", min, max);
         }
     } while (n < min || n > max);
 
@@ -36,13 +38,16 @@ float lerFloat (float min, float max) {
 void lerString(char vetor[], int max) {
     int tamanhoString;
 
-    do {
-        fgets(vetor, max, stdin);
+    do{
+        fgets(vetor, max + 1, stdin);
         tamanhoString = strlen(vetor);
     } while (tamanhoString == 1);
 
-    if(vetor[tamanhoString -1] != '\n') {
+    if (vetor[tamanhoString - 1] != '\n'){
         limparBufferStdin();
+    }
+    else{
+        vetor[tamanhoString-1] ='\0';
     }
 }
 
@@ -50,8 +55,8 @@ void limparBufferStdin() {
     char lixo;
 
     do {
-        lixo=getchar();
-    } while (lixo!='\n' && lixo != EOF);
+        lixo = getchar();
+    } while (lixo != '\n' && lixo != EOF);
 }
 
 tipoData lerData() {
@@ -116,9 +121,10 @@ int lerEscolhaMultipla(int min, int max) {
         limparBufferStdin();
 
         if (n < min || n > max) {
-            printf("ERRO - O VALOR E INVALIDO [DE %d A %d]", min, max);
+            printf("\nERRO - Valor invalido\n\n");
+            printf("Insira um valor que esteja compreendido entre %d e %d: ", min, max);
         }
-    } while (n < min && n > max);
+    } while (n < min || n > max);
 
     return n;
 }

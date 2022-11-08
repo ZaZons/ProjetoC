@@ -4,7 +4,7 @@
 /**
  * Funcao principal da listagem, chama todas as outras funcoes de listagem de forma ordenada.
  * Usada para uma maior organizacao.
- * */
+*/
 void mostrarListagem(tipoIp pontosIp[], int nPontos,
     tipoAvaria avarias[], int nAvarias,
     tipoIntervencao intervencoes[], int nIntervencoes);
