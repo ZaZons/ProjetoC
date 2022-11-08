@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcoesLeitura.h" 
+#include "funcoesLeitura.h"
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
@@ -13,10 +13,15 @@ int menu ();
 
 int main() {
     tipoIp pontosIp[MAX_IP];
-    int opcao;
-    int quantidadePontos = 0;
+    int opcao,
+    int nPontos = 0, avariasResolvidas = 0;
+    float percLED = 0;
 
     do {
+        tecLED(nLED, nPontos, &percLED); //
+        avariasResolvidas(nAvarias, &avariasResolvidas);
+
+
         opcao = menu();
         switch(opcao) {
             case 1:
