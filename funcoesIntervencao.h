@@ -13,6 +13,7 @@ typedef struct{
     int operacional;
 }tipoIntervencao;
 
-void obterDadosIntervencao(tipoIp pontosIP[], int quantidadePontos);
+void obterDadosIntervencao(tipoIp pontosIP[], int n);
+float custoIntervencao(tipoIntervencao intervencoes, int n);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED

@@ -24,7 +24,8 @@ int validacaoIntervencao(int n1, int n2)
 void obterDadosIntervencao(tipoIP pontosIp[], int quantidadePontos){
 
     tipoIntervencao novaIntervencao[200];
-    int min, max, i, idIp, validacaoIp;
+    int i, idIp, validacaoIp;
+    float  min, max;
     char codAvaria[MAX_CODIGO_AVARIA] = "NULL";
     int idIp = 0;
 
@@ -32,18 +33,18 @@ void obterDadosIntervencao(tipoIP pontosIp[], int quantidadePontos){
     {
         min=0
         max=50;
-        printf("IP sujeito a intervenção: ");
+        printf("\nIP sujeito a intervenção: ");
         idIp = lerInt(min, max);
 
         validacaoIp = procuraPontoIp(pontosIp, quantidadePontos, idIp);
 
         if(validacaoIp == -1)
         {
-            printf("Ponto IP nao encontrado");
+            printf("\nPonto IP nao encontrado");
         }
     }while(validacaoIp == -1);
 
-    for(i=0; i<quantidadeAvarias; i++)
+    for(i=0; i<nAvarias; i++)
     {
         if(avarias[i].idPontosIp == idIP)
         {
@@ -53,50 +54,40 @@ void obterDadosIntervencao(tipoIP pontosIp[], int quantidadePontos){
     }
     if(strcmp(codAvaria, "NULL") == 1)
     {
-        printf("Registo de avaria inexistente");
+        printf("\nRegisto de avaria inexistente");
     }
     else{
+
+        strcpy(codAvaria, novaIntervencao.codIntervencao);
         novaIntervencao.dataIntervencao = lerData();
+        strcpy(pontosIp.cpe, novaIntervencao.cpe); // check it
         lerString(novaIntervencao.descricaoIntervencao, 150);
 
-        min= 0.1;
+        min= 0.01;
         max= 2000;
         novaIntervencao.custoIntervencao = lerFloat(min,max);
 
         min=0;
         max=1;
-        printf("Efetuada substituição de Luminaria? ");
+        printf("\nEfetuada substituição de Luminaria? [0 - Não] [1 - Sim]");
         novaIntervencao.substituicaoLuminaria = lerInt(min, max);
 
-        printf("O Ponto IP ficou operacional? [0 - Não] [1 - Sim]")
+        printf("\nO Ponto IP ficou operacional? [0 - Não] [1 - Sim]")
         novaIntervencao.operacional = lerInt(min, max);
 
-        pontosIp.estadoFuncionamento = novaIntervencao.operacional;
+        pontosIp.estadoFuncionamento = novaIntervencao.operacional; // alterar o estado de funcionamento no pontosIp
 
+}
 
+float custoIntervencao(tipoIntervencao intervencoes, int n) //verificar se uso int n ou variavel
+{
+    int i;
+    float custoTotal=0;
 
-    /**do
+    for(i=0; i < n; i++)
     {
-        min = 1;
-        max = 9999;
-        printf("\nID do IP sujeito a intervencao: ");
-        ID = lerInt(min, max);
-        pos = procuraPontoIp(pontosIP, quantidadePontos, ID) //falta verificar se tem avaria
-    }while(pos != -1 && /* verificacao de ter avaria */);
+        custoTotal += intervencoes[i].custoIntervencao
+    }
 
-    /*novaIntervencao.ID = ID;
-
-    novaIntervencao.dataIntervencao = lerData();
-
-    lerString(novaIntervencao.descricaoIntervencao, 150);
-
-    min= 0.1;
-    max= 2000;
-    novaIntervencao.custoIntervencao = lerFloat(min,max);
-
-    printf("Efetuada substituição de Luminaria? ");*/
-
-
-
-
+    return custoTotal;
 }
