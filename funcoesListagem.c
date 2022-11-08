@@ -43,8 +43,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
     printf("\n}\n");
 }
 
-void mostrarPontosLed(pontosIp, nPontos) {
-    char tecnologia[MAX_TECNOLOGIA] = "LED";
+void mostrarPontosLed(tipoIp pontosIp[], int nPontos) {
     printf("\nPontos IP com luminarias LED: {");
     for (int i = 0; i < nPontos; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {

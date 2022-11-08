@@ -112,3 +112,16 @@ int procuraPontoIp(tipoIp pontosIp[], int n, int id) {
 
     return pos;
 }
+
+int calcularPontosLed(tipoIp pontosIp[], int n) {
+    char tecnologia[MAX_TECNOLOGIA] = "LED";
+    int nPontos = 0;
+    
+    for (int i = 0; i < n; i++) {
+        if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {
+            nPontos++;
+        }
+    }
+    
+    return nPontos;
+}
