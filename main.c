@@ -26,8 +26,13 @@ int main() {
 
     int opcao;
     do {
+<<<<<<< Updated upstream
         //tecLED(nLED, nPontos, &percLED); //
         //avariasResolvidas(nAvarias, &avariasResolvidas);
+=======
+        percTecnologia(nLED, nPontos, &percLED); //
+        avariasResolvidas(nAvarias, &avariasResolvidas);
+>>>>>>> Stashed changes
 
         opcao = menu(nPontos, nAvarias);
         switch(opcao) {
@@ -44,7 +49,7 @@ int main() {
 
                 break;
             case 5:
-
+                informacoes();
                 break;
             case 6:
                 saveFile = fopen("parque.dat", "wb");

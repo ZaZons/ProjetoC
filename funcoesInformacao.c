@@ -58,31 +58,69 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
     mediaCustoIntervencao = (float)custoTotalIntervencao / nIntervencoes;
     printf("\n Custo média de Intervencoes: %.1f", mediaCustoIntervencao);
 
+    int j;
+    int id=-1;
     int contador = 0;
     int aux = 0;
-    int idaux = 0;
+    int idaux = -1;
     int idPonto;
-    for(int i = 0; i < navaria; i++)
+    for(i = 0; i < nAvarias; i++)
     {
-        id = avaria[i].pontoid
-        for(int j = 0; j < npontos; i++)
+        id = avaria[i].idPontoIp;
+        for(j = 0; j < nPontos; i++)
         {
-            if (pontosIp[j] == id){
-                contador++
+            if (pontosIp[j].id == id){
+                contador++;
                 }
             if (contador > aux){
-                aux = contador
-                idaux = id
+                aux = contador;
+                idaux = id;
                 }
         }
     }
     printf("\nPonto Ip com maior com maior numero de avarias: %d", idaux);
 
     tipoData novaData;
+    int contadorMenorData=0;
 
     novadata = lerdata();
 
-    for(i=0; i<nAvarias;)
+    for(i=0; i<nAvarias;i++)
+    {
+        if(avarias[i].dataAvaria.ano <= novadata.ano){
+            if(avarias[i].dataAvaria.mes <= novadata.mes){
+                if(avarias[i].dataAvaria.dia < novadata.dia)
+                    contadorMenorData++;
+            }
+        }
+    }
+    printf("\nNumero de avarias até %d-%d-%d: %d"novadata.dia, novaData.mes, novaData.ano, contadorMenorData);
+
+
+
+    int contadorSubstituicao = 0;
+    int auxSubstituicao = 0;
+    int idSubtituicao = -1;
+    int auxIdSubstituicao = -1;
+
+
+    for(i=0; i<nPontos; i++)
+    {
+        idSubtituicao = pontosIp.id;
+
+        for(j=0; j<nIntervencoes; j++)
+        {
+            if(intervencoes[i].substituicaoLuminaria == 1){
+            contadorNumSubstituicoes++;
+            }
+            if(contadorSubstituicao > auxSubstituicao){
+                auxSubstituicao = contadorSubstituicao;
+                auxIdSubstituicao = idSubtituicao;
+            }
+        }
+    }
+    printf("Ponto IP com maior numero de substituicao de luminárias: %d", auxIdSubstituicao);
+
 
 
 

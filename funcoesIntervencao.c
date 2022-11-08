@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcoesLeitura.h"
 #include "funcoesIP.h"
+#include "funcoesLeitura.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
-/*
+
 int validacaoIntervencao(int n1, int n2)
 {
     int valor = 0;
@@ -21,17 +21,17 @@ int validacaoIntervencao(int n1, int n2)
     return valor;
 }
 
-void obterDadosIntervencao(tipoIp pontosIp[], int quantidadePontos){
+void obterDadosIntervencao(tipoIP pontosIp[], int quantidadePontos){
 
     tipoIntervencao novaIntervencao[200];
-    int i, validacaoIp;
+    int i, idIp, validacaoIp;
     float  min, max;
     char codAvaria[MAX_CODIGO_AVARIA] = "NULL";
     int idIp = 0;
 
     do
     {
-        min=0;
+        min=0
         max=50;
         printf("\nIP sujeito a intervenção: ");
         idIp = lerInt(min, max);
@@ -81,14 +81,15 @@ void obterDadosIntervencao(tipoIp pontosIp[], int quantidadePontos){
 
 float custoIntervencao(tipoIntervencao intervencoes, int n) //verificar se uso int n ou variavel
 {
-    int i;
-    float custoTotal=0;
-
-    for(i=0; i < n; i++)
-    {
-        custoTotal += intervencoes[i].custoIntervencao
-    }
-
-    return custoTotal;
+    float custoTotalReparacoes = 0;
+    for (int j = 0; j < nIntervencoes; j++) {
+    for (int k = 0; k < nAvarias; k++) {
+                 if (intervencoes[j].ID == avarias[k].codRegisto) {
+                     if (avarias[k].idPontoIp == pontosIp[i].id) {
+                         custoTotalReparacoes += intervencoes[j].custoIntervencao;
+                        }
+                    }
+                }
+            }
+    return custoTotalReparacoes
 }
-*/
