@@ -33,7 +33,7 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
 int procuraAvaria(tipoAvaria avarias[], int n, char codRegisto[]);
 
 /**
- *
+ * Calcula e devolve quantidade de avarias que um ponto IP tem, a partir do seu codigo unico.
  * */
 int calcularQuantidadeAvarias(tipoAvaria avarias[], int nAvarias, int idPontoIp);
 

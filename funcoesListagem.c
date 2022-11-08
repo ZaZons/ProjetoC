@@ -4,24 +4,15 @@
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
 
-void mostrarListagem(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, /* tipoIntervencao intervencoes[] */, int nIntervencoes) {
+void mostrarListagem(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     mostrarPontosIp(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
     mostrarPontosLed(pontosIp, nPontos);
+    mostrarAvarias(avarias, nAvarias);
+    mostrarHistorico(avarias, nAvarias);
 
-    printf("\n");
-    printf("\nAvarias: {");
-    for (int i = 0; i < nAvarias; i++) {
-        printf("\n\tAvaria %s: {", avarias[i].codRegisto);
-        printf("\n\t\tPonto IP avariado: %d", avarias[i].idPontoIp);
-        printf("\n\t\tMeio de comunicacao da avaria: %s", avarias[i].meioComunicacao);
-        printf("\n\t\tData da avaria: %2d/%2d/%4d", avarias[i].dataAvaria.dia, avarias[i].dataAvaria.mes, avarias[i].dataAvaria.ano);
-        printf("\n\t\tDescricao: %s", avarias[i].descricao);
-        printf("\n\t}");
-    }
-    printf("\n}\n");
 }
 
-void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, /* tipoIntervencao intervencoes[] */, int nIntervencoes) {
+void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     printf("\n");
     printf("\nPontos IP: {")
     for (int i = 0; i < nPontos; i++) {
@@ -41,7 +32,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
         //         if (intervencoes[j].ID == avarias[k].codRegisto) {
         //             if (avarias[k].idPontoIp == pontosIp[i].id) {
         //                 custoTotalReparacoes += intervencoes[j].custoIntervencao;
-        //             } 
+        //             }
         //         }
         //     }
         // }
@@ -53,7 +44,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
 }
 
 void mostrarPontosLed(pontosIp, nPontos) {
-    char tecnologia[MAX_TECNOLOGIA] = "LED"; 
+    char tecnologia[MAX_TECNOLOGIA] = "LED";
     printf("\nPontos IP com luminarias LED: {");
     for (int i = 0; i < nPontos; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {
@@ -61,5 +52,56 @@ void mostrarPontosLed(pontosIp, nPontos) {
         }
     }
     printf("\n}\n");
+}
+
+void mostrarAvarias(tipoAvaria avarias[], int nAvarias) {
+    printf("\n");
+    printf("\nAvarias: {");
+    for (int i = 0; i < nAvarias; i++) {
+        printf("\n\tAvaria %s: {", avarias[i].codRegisto);
+        printf("\n\t\tPonto IP avariado: %d", avarias[i].idPontoIp);
+        printf("\n\t\tMeio de comunicacao da avaria: %s", avarias[i].meioComunicacao);
+        printf("\n\t\tData da avaria: %2d/%2d/%4d", avarias[i].dataAvaria.dia, avarias[i].dataAvaria.mes, avarias[i].dataAvaria.ano);
+        printf("\n\t\tDescricao: %s", avarias[i].descricao);
+        printf("\n\t}");
+    }
+    printf("\n}\n");
+}
+
+void mostrarHistoricoAvarias(tipoAvaria avarias[], int nAvarias) {    
+    int idPontoHistorico;
+    int nAvariasFiltradas = 0;
+    tipoAvaria avariasFiltradas[MAX_AVARIAS];
+    printf("\nSelecione o ponto IP para mostrar o historico de avarias: ");
+    idPontoHistorico = lerInt(MIN_IP_ID, MAX_IP_ID);
+
+    for (int i = 0; i < nAvarias; i++) {
+        if (avarias[i].idPontoIp == idPontoHistorico) {
+            avariasFiltradas[nAvariasFiltradas] = avarias[i];
+            nAvariasFiltradas++;
+        }
+    }
+    mostrarAvarias(avariasFiltradas, nAvariasFiltradas);
+}
+
+void mostrarPontoPorAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
+    char codAvariaHistorico[MAX_CODIGO_AVARIA];
+    int pontoExiste = 0;
+    tipoIp pontoPorAvaria[1];
+    printf("Selecione o codigo da avaria para identificar o ponto IP: ")
+    lerString(codAvariaHistorico, MAX_CODIGO_AVARIA);
+
+    for (int i = 0; i < nAvarias; i++) {
+        if (avarias[i].codRegisto == codAvariaHistorico) {
+            pontoExiste = 1;
+            pontoPorAvaria[0] = avarias[i].idPontoIp;
+        }
+    }
+
+    if (pontoExiste == 0) {
+        printf("\nNao existe nenhuma avaria com o codigo que inseriu.")
+    } else {
+        mostrarPontosIp(pontoPorAvaria, nPonto, avarias, nAvarias, intervencoes, nIntervencoes);
+    }
 }
 
