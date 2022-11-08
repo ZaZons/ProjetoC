@@ -38,3 +38,6 @@ int procuraAvaria(tipoAvaria avarias[], int n, char codRegisto[]);
 int calcularQuantidadeAvarias(tipoAvaria avarias[], int nAvarias, int idPontoIp);
 
 #endif // FUNCOESAVARIA_H_INCLUDED
+
+
+

@@ -1,0 +1,13 @@
+#ifndef FUNCOESAVARIA_H_INCLUDED
+#define FUNCOESAVARIA_H_INCLUDED
+
+typedef struct {
+  
+  tipoData data;
+} tipoAvaria;
+
+
+#endif // FUNCOESAVARIA_H_INCLUDED
+
+
+

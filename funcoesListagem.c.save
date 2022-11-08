@@ -9,7 +9,7 @@ void mostrarListagem(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
     mostrarPontosIp(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
     mostrarPontosLed(pontosIp, nPontos);
     mostrarAvarias(avarias, nAvarias);
-    mostrarHistoricoAvarias(avarias, nAvarias);
+    mostrarHistorico(avarias, nAvarias);
 
 }
 
@@ -94,14 +94,16 @@ void mostrarPontoPorAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[],
     for (int i = 0; i < nAvarias; i++) {
         if (avarias[i].codRegisto == codAvariaHistorico) {
             pontoPos = procuraPontoIp(pontosIp, nPontos, avarias[i].idPontoIp);
-            pontoPorAvaria[0] = pontosIp[pontoPos];
+            
+            pontoExiste = 1;
+            pontoPorAvaria[0] = avarias[i];
         }
     }
 
-    if (pontoPos == -1) {
-        printf("\nNao existe nenhuma avaria com o codigo que inseriu.");
+    if (pontoPos == 0) {
+        printf("\nNao existe nenhuma avaria com o codigo que inseriu.")
     } else {
-        mostrarPontosIp(pontoPorAvaria, 1, avarias, nAvarias, intervencoes, nIntervencoes);
+        mostrarPontosIp(pontoPorAvaria, nPonto, avarias, nAvarias, intervencoes, nIntervencoes);
     }
 }
 
