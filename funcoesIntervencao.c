@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcoesIP.h"
 #include "funcoesLeitura.h"
+#include "funcoesIP.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
-
+/*
 int validacaoIntervencao(int n1, int n2)
 {
     int valor = 0;
@@ -21,17 +21,17 @@ int validacaoIntervencao(int n1, int n2)
     return valor;
 }
 
-void obterDadosIntervencao(tipoIP pontosIp[], int quantidadePontos){
+void obterDadosIntervencao(tipoIp pontosIp[], int quantidadePontos){
 
     tipoIntervencao novaIntervencao[200];
-    int i, idIp, validacaoIp;
+    int i, validacaoIp;
     float  min, max;
     char codAvaria[MAX_CODIGO_AVARIA] = "NULL";
     int idIp = 0;
 
     do
     {
-        min=0
+        min=0;
         max=50;
         printf("\nIP sujeito a intervenção: ");
         idIp = lerInt(min, max);
@@ -91,3 +91,4 @@ float custoIntervencao(tipoIntervencao intervencoes, int n) //verificar se uso i
 
     return custoTotal;
 }
+*/

@@ -1,12 +1,10 @@
 #ifndef FUNCOESINTERVENCAO_H_INCLUDED
 #define FUNCOESINTERVENCAO_H_INCLUDED
 
-#define MAX_CODIGO_INTERVENCOES
-
 typedef struct{
-    char codIntervencao[MAX_CODIGO_INTERVENCOES];
+    char codIntervencao[1];
     tipoData dataIntervencao;
-    char cpe[MAX_CPE]
+    char cpe[MAX_CPE];
     char descricaoIntervencao[150];
     float custoIntervencao;
     int substituicaoLuminaria;

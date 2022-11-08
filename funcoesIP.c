@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcoesIP.h"
 #include "funcoesLeitura.h"
+#include "funcoesIP.h"
 
 int novoPontoIp(tipoIp pontosIp[], int n) {
     if (n >= MAX_IP) {
@@ -116,12 +116,12 @@ int procuraPontoIp(tipoIp pontosIp[], int n, int id) {
 int calcularPontosLed(tipoIp pontosIp[], int n) {
     char tecnologia[MAX_TECNOLOGIA] = "LED";
     int nPontos = 0;
-    
+
     for (int i = 0; i < n; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {
             nPontos++;
         }
     }
-    
+
     return nPontos;
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcoesLeitura.h" 
+#include "funcoesLeitura.h"
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"

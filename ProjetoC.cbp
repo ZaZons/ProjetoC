@@ -39,14 +39,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoesIP.h" />
-		<Unit filename="funcoesInformacao.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="funcoesInformacao.h" />
-		<Unit filename="funcoesIntervencao.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="funcoesIntervencao.h" />
 		<Unit filename="funcoesLeitura.c">
 			<Option compilerVar="CC" />
 		</Unit>

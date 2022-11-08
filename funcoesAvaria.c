@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcoesIP.h"
 #include "funcoesLeitura.h"
+#include "funcoesIP.h"
 #include "funcoesAvaria.h"
 
 int registarAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos) {
