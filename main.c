@@ -10,26 +10,29 @@
 #include "funcoesListagem.h"
 #include "funcoesGravar.h"
 
+#define MIN_ESCOLHA 0
+#define MAX_ESCOLHA 6
+
 /**
  * Importar valores para mostrar no menu
- * */
-int menu ();
+*/
+int menu (int nPontos, int nAvarias, float percLed, int avariasR);
 
 int main() {
     FILE* saveFile;
 
     tipoIp pontosIp[MAX_IP];
-    int nPontos = 0;
     tipoAvaria avarias[MAX_AVARIAS];
-    int nAvarias = 0;
     tipoIntervencao intervencoes[MAX_INTERVENCOES];
+
+    int nPontos = 0;
+    int nAvarias = 0;
     int nIntervencoes = 0;
-
     int avariasR = 0;
-    float percLED = 0.0;
-
-    //int abrirAoIniciar = lerAbrirAoIniciar();
     int nLed;
+    float percLed;
+
+    int abrirAoIniciar = lerAbrirAoIniciar();
 
     //if (abrirAoIniciar == 1) {
     //    lerFicheiro(pontosIp, &nPontos, avarias,  &nAvarias, intervencoes, &nIntervencoes);
@@ -37,13 +40,10 @@ int main() {
 
     int opcao;
     do {
-        //tecLED(nLED, nPontos, &percLED); //
-        //avariasResolvidas(nAvarias, &avariasResolvidas);
-        percTecnologia(nLed, nPontos, &percLED); //
-        avariasResolvidas(intervencoes, nAvarias, &avariasR);
+        percPontosLed(pontosIp, nPontos, &percLed);
+        avariasResolvidas(intervencoes, nIntervencoes, &avariasR);
 
-
-        opcao = menu(nPontos, nAvarias);
+        opcao = menu(nPontos, nAvarias, percLed, avariasR);
         switch(opcao) {
             case 1:
                 nPontos = novoPontoIp(pontosIp, nPontos);
@@ -74,7 +74,7 @@ int main() {
 }
 
 
-int menu (int nPontos, int nAvarias) {
+int menu (int nPontos, int nAvarias, float percLed, int avariasR) {
     int opcao = 0;
 
     printf("\n\tGestao de Pontos de Iluminacao Publica(IP)");
@@ -88,8 +88,8 @@ int menu (int nPontos, int nAvarias) {
     printf("\n   6. Gravar");
     printf("\n   0. Sair");
     printf("\n\tSelecione a opcao: ");
-    scanf(" %d", &opcao);
-    limparBufferStdin();
+
+    opcao = lerInt(MIN_ESCOLHA, MAX_ESCOLHA);
 
     return opcao;
 }

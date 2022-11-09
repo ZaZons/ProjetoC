@@ -78,7 +78,6 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
     novaAvaria.dataAvaria = lerData();
 
     // Breve descricao da avaria
-    char descricao[MAX_DESCRICAO];
     printf("\nInsira uma breve descricao da avaria do ponto IP");
     lerString(novaAvaria.descricao, MAX_DESCRICAO);
 

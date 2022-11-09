@@ -5,18 +5,18 @@
 #include "funcoesLeitura.h"
 #include "funcoesIP.h"
 
-int novoPontoIp(tipoIp pontosIp[], int n) {
-    if (n >= MAX_IP) {
+int novoPontoIp(tipoIp pontosIp[], int nPontos) {
+    if (nPontos >= MAX_IP) {
         printf("Numero maximo de pontos IP atingido.\n");
     } else {
-        pontosIp[n] = lerDadosPontoIp(pontosIp, n);
-        n++;
+        pontosIp[nPontos] = lerDadosPontoIp(pontosIp, nPontos);
+        nPontos++;
     }
 
-    return n;
+    return nPontos;
 }
 
-tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
+tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
     tipoIp novoPonto;
     int min;
     int max;
@@ -30,7 +30,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
         printf("Insira o numero do novo ponto: ");
         id = lerInt(MIN_IP_ID, MAX_IP_ID);
 
-        verificacao = procuraPontoIp(pontosIp, n, id);
+        verificacao = procuraPontoIp(pontosIp, nPontos, id);
 
         if (verificacao != -1) {
             printf("\nERRO - Posto ja existente!\n\n");
@@ -103,10 +103,10 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int n) {
     return novoPonto;
 }
 
-int procuraPontoIp(tipoIp pontosIp[], int n, int id) {
+int procuraPontoIp(tipoIp pontosIp[], int nPontos, int id) {
     int pos = -1;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < nPontos; i++) {
         if (pontosIp[i].id == id) {
             pos = i;
         }
@@ -115,15 +115,15 @@ int procuraPontoIp(tipoIp pontosIp[], int n, int id) {
     return pos;
 }
 
-int calcularPontosLed(tipoIp pontosIp[], int n) {
+int calcularPontosLed(tipoIp pontosIp[], int nPontos) {
     char tecnologia[MAX_TECNOLOGIA] = "LED";
-    int nPontos = 0;
+    int nLed = 0;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < nPontos; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {
-            nPontos++;
+            nLed++;
         }
     }
 
-    return nPontos;
+    return nLed;
 }

@@ -8,20 +8,13 @@
 #include "funcoesIntervencao.h"
 #include "funcoesInformacao.h"
 
-void percTecnologia(int n, int nTotal, float *percN)
-{
-
-    *percN = ((float)n * 100)/nTotal;
+void percPontosLed(tipoIp pontosIp[], int nPontos, float *percLed) {
+    *percLed = (float) calcularPontosLed(pontosIp, nPontos) / nPontos;
 }
 
-void avariasResolvidas(tipoIntervencao intervencoes[], int nAvarias, int *avariasR)
-{
-    int i;
-
-    for(i=0; i<nAvarias; i++)
-    {
-        if(intervencoes[i].operacional == 1)
-        {
+void avariasResolvidas(tipoIntervencao intervencoes[], int nIntervencoes, int *avariasR) {
+    for(int i = 0; i < nIntervencoes; i++) {
+        if(intervencoes[i].operacional == 1) {
             *avariasR++;
         }
     }
@@ -44,11 +37,12 @@ void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[]
             }
         }
     }
-    percTecnologia( nMercurio, nPontos, &percMercurio);
+
+    percTecnologia(nMercurio, nPontos, &percMercurio);
     percTecnologia(nSodio, nPontos, &percSodio);
     percTecnologia(nLED, nPontos, &percLED);
 
-    printf("\nPercentagens de Tecnologias de Luminária");
+    printf("\nPercentagens de Tecnologias de Luminï¿½ria");
     printf("\n\tVapor de Mercurio: %.1f", percMercurio);
     printf("\n\tVapor de Sodio: %.1f", percSodio);
     printf("\n\t LED: %.1f", percLED);
@@ -59,7 +53,7 @@ void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[]
     }
 
     mediaCustoIntervencao = (float)custoTotalIntervencao / nIntervencoes;
-    printf("\nCusto média de Intervencoes: %.1f", mediaCustoIntervencao);
+    printf("\nCusto mï¿½dia de Intervencoes: %.1f", mediaCustoIntervencao);
 
     int j;
     int id=-1;
@@ -97,7 +91,7 @@ void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[]
             }
         }
     }
-    printf("\nNumero de avarias até %d-%d-%d: %d", novaData.dia, novaData.mes, novaData.ano, contadorMenorData);
+    printf("\nNumero de avarias atï¿½ %d-%d-%d: %d", novaData.dia, novaData.mes, novaData.ano, contadorMenorData);
 
 
 
@@ -122,7 +116,7 @@ void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[]
             }
         }
     }
-    printf("\nPonto IP com maior numero de substituicao de luminárias: %d", auxIdSubstituicao);
+    printf("\nPonto IP com maior numero de substituicao de luminï¿½rias: %d", auxIdSubstituicao);
 
     tipoData dataConsecutiva;
     int contadorDiasConsecutivos = 0;
@@ -151,7 +145,7 @@ void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[]
             }
         }
     }
-    printf("\nNumero de Avarias não resolvidas durante 10 dias: %d", contadorDiasConsecutivos);
+    printf("\nNumero de Avarias nï¿½o resolvidas durante 10 dias: %d", contadorDiasConsecutivos);
 }
 
 void soma10Dias(tipoData *dataConsecutiva) {
