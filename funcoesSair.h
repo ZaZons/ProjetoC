@@ -1,6 +1,6 @@
 #ifndef FUNCOESSAIR_H_INCLUDED
 #define FUNCOESSAIR_H_INCLUDED
 
-
+void sair(void);
 
 #endif // FUNCOESSAIR_H_INCLUDED

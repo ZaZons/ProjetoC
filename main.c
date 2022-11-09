@@ -5,6 +5,7 @@
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
 #include "funcoesListagem.h"
+#include "funcoesGravar.h"
 
 /**
  * Importar valores para mostrar no menu
@@ -24,9 +25,16 @@ int main() {
     int avariasResolvidas = 0;
     float percLED = 0;
 
+    int abrirAoIniciar = lerAbrirAoIniciar();
+
+    if (abrirAoIniciar == 1) {
+        lerFicheiro(pontosIp, &nPontos, avarias,  &nAvarias, intervencoes, &nIntervencoes);
+    }
+
     int opcao;
     do {
-
+        //tecLED(nLED, nPontos, &percLED); //
+        //avariasResolvidas(nAvarias, &avariasResolvidas);
         percTecnologia(nLED, nPontos, &percLED); //
         avariasResolvidas(nAvarias, &avariasResolvidas);
 
@@ -49,22 +57,10 @@ int main() {
                 informacoes();
                 break;
             case 6:
-                saveFile = fopen("parque.dat", "wb");
-
-                if (saveFile == 0) {
-                    printf("Erro ao abrir o ficheiro\n");
-                } else {
-                    fwrite(pontosIp, sizeof(tipoIp), MAX_IP, saveFile);
-                    fwrite(nPontos, sizeof(int), 1, saveFile);
-                    fwrite(avarias, sizeof(tipoAvaria), MAX_AVARIAS, saveFile);
-                    fwrite(nAvarias, sizeof(int), 1, saveFile);
-                    fwrite(intervencoes, sizeof(tipoIntervencao), MAX_INTERVENCOES, saveFile);
-                    fwrite(nIntervencoes, sizeof(int), 1, saveFile);
-                    fclose(saveFile);
-
-                    printf("\nDados guardados com sucesso.");
-                }
+                gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, -1);
                 break;
+            case 0:
+
         }
 
     } while (opcao != 0);
