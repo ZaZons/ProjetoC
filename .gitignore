@@ -11,6 +11,7 @@
 *.obj
 *.elf
 *.layout
+*.save
 
 # Linker output
 *.ilk
@@ -57,6 +58,8 @@ Mkfile.old
 dkms.conf
 *.depend
 obj/
+
+*.vscode/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/c

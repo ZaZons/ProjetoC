@@ -17,7 +17,7 @@ typedef struct {
     int operacional;
 } tipoIntervencao;
 
-void obterDadosIntervencao(tipoIp pontosIp[], int n, tipoAvaria avarias[], int nAvarias);
-float custoIntervencao(tipoIntervencao intervencoes[], int nIntervencoes, tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos);
+void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
+float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED

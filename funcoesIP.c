@@ -53,23 +53,18 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
 
     // Potencia
     int potencia;
-    int potencia1 = 33;
-    int potencia2 = 50;
-    int potencia3 = 100;
-    min = 1;
-    max = 3;
-    printf("Insira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", potencia1, potencia2, potencia3);
-    potencia = lerEscolhaMultipla(min, max);
+    printf("Insira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", POTENCIA_1, POTENCIA_2, POTENCIA_3);
+    potencia = lerEscolhaMultipla(POTENCIA_1, POTENCIA_3);
 
     switch (potencia) {
         case 1:
-            novoPonto.potencia = potencia1;
+            novoPonto.potencia = POTENCIA_1;
             break;
         case 2:
-            novoPonto.potencia = potencia2;
+            novoPonto.potencia = POTENCIA_2;
             break;
         case 3:
-            novoPonto.potencia = potencia3;
+            novoPonto.potencia = POTENCIA_3;
             break;
     }
 
@@ -85,18 +80,18 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
     int intTipo;
     min = 1;
     max = 3;
-    printf("Insira o tipo de luminaria do ponto (1 - Vapor de mercurio / 2 - Vapor de sodio / 3 - LED): ");
+    printf("Insira o tipo de luminaria do ponto (1 - %s / 2 - %s / 3 - %s): ", TECNOLOGIA_MERCURIO, TECNOLOGIA_SODIO, TECNOLOGIA_LED);
     intTipo = lerEscolhaMultipla(min, max);
 
     switch (intTipo) {
         case 1:
-            strcpy(novoPonto.tipoTecnologia, "Vapor de mercurio");
+            strcpy(novoPonto.tipoTecnologia, TECNOLOGIA_MERCURIO);
             break;
         case 2:
-            strcpy(novoPonto.tipoTecnologia, "Vapor de sodio");
+            strcpy(novoPonto.tipoTecnologia, TECNOLOGIA_SODIO);
             break;
         case 3:
-            strcpy(novoPonto.tipoTecnologia, "LED");
+            strcpy(novoPonto.tipoTecnologia, TECNOLOGIA_LED);
             break;
     }
 
@@ -115,15 +110,14 @@ int procuraPontoIp(tipoIp pontosIp[], int nPontos, int id) {
     return pos;
 }
 
-int calcularPontosLed(tipoIp pontosIp[], int nPontos) {
-    char tecnologia[MAX_TECNOLOGIA] = "LED";
-    int nLed = 0;
+int calcularTecnologiaPontos(tipoIp pontosIp[], int nPontos, char tecnologia[]) {
+    int numTec = 0;
 
     for (int i = 0; i < nPontos; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, tecnologia) == 0) {
-            nLed++;
+            numTec++;
         }
     }
 
-    return nLed;
+    return numTec;
 }

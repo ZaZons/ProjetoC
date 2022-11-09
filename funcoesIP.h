@@ -7,6 +7,14 @@
 #define MAX_CPE 20
 #define MAX_TECNOLOGIA 20
 
+#define POTENCIA_1 33
+#define POTENCIA_2 50
+#define POTENCIA_3 100
+
+#define TECNOLOGIA_MERCURIO "Vapor de mercurio"
+#define TECNOLOGIA_SODIO "Vapor de sodio"
+#define TECNOLOGIA_LED "LED"
+
 typedef struct {
   int id;
   char cpe[MAX_CPE];
@@ -34,8 +42,8 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos);
 int procuraPontoIp(tipoIp pontosIp[], int nPontos, int id);
 
 /**
- * Calcula o numero de pontos que utilizam luminarias LED.
+ * Calcula e devolve o numero de pontos que utilizam luminarias de um certo tipo de tecnologia.
 */
-int calcularPontosLed(tipoIp pontosIp[], int nPontos);
+int calcularTecnologiaPontos(tipoIp pontosIp[], int nPontos, char tecnologia[]);
 
 #endif // FUNCOESIP_H_INCLUDED

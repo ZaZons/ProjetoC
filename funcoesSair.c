@@ -10,37 +10,16 @@
 #include "funcoesGravar.h"
 #include "funcoesSair.h"
 
-void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes)
-{
-    char opcao;
+void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
+    int opcao;
 
-    printf("\nDeseja guardar os dados antes de sair? [1 - Sim] [0 - Nao]");
+    printf("\nDeseja guardar os dados antes de sair? (1 - Sim / 0 - Nao) ");
+    opcao = lerInt(0, 1);
 
-    do{
+    if (opcao == 1) {
+        printf("\nDeseja carregar os dados gravados quando voltar a iniciar o programa?");
         opcao = lerInt(0, 1);
 
-        if(opcao != 1 && opcao != 0) {
-            printf("\nOpcao Invalida");
-        }
-
-    }while(opcao != 1 && opcao != 0);
-
-    if(opcao == 1) {
-        gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, -1);
-    }
-
-    printf("\nDeseja executar os dados gravados quando voltar a ser iniciado o programa?");
-
-    do{
-        opcao = lerInt(0, 1);
-
-        if(opcao != 1 && opcao != 0) {
-            printf("\nOpcao Invalida");
-        }
-    }while(opcao != 1 && opcao != 0);
-
-    if(opcao == 1) {
-        gravarAbrirAoIniciar(opcao);
-
+        gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, opcao);
     }
 }

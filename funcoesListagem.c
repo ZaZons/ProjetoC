@@ -21,6 +21,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
     printf("\nPontos IP: {");
     for (int i = 0; i < nPontos; i++) {
         int quantidadeAvarias = calcularQuantidadeAvarias(avarias, nAvarias, pontosIp[i].id);
+        float custoTotalReparacoes = custoTotalIntervencoes(pontosIp[i].id, avarias, nAvarias, intervencoes, nIntervencoes);
 
         printf("\n\tPonto IP numero %d: {", i + 1);
         printf("\n\t\tNumero de identificacao: %d", pontosIp[i].id);
@@ -29,19 +30,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
         printf("\n\t\tEstado de funcionamento: %s", pontosIp[i].estadoFuncionamento);
         printf("\n\t\tTipo de tecnologia: %s", pontosIp[i].tipoTecnologia);
         printf("\n\t\tQuantidade total de avarias: %d", quantidadeAvarias);
-
-        // float custoTotalReparacoes = 0;
-        // for (int j = 0; j < nIntervencoes; j++) {
-        //     for (int k = 0; k < nAvarias; k++) {
-        //         if (intervencoes[j].ID == avarias[k].codRegisto) {
-        //             if (avarias[k].idPontoIp == pontosIp[i].id) {
-        //                 custoTotalReparacoes += intervencoes[j].custoIntervencao;
-        //             }
-        //         }
-        //     }
-        // }
-
-        // printf("\n\t\tCusto total das reparacoes: %.2f", custoTotalReparacoes);
+        printf("\n\t\tCusto total das reparacoes: %.2f", custoTotalReparacoes);
         printf("\n\t}");
     }
     printf("\n}\n");
