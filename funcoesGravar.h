@@ -9,4 +9,5 @@ void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAv
 
 int lerAbrirAoIniciar();
 
+
 #endif // FUNCOESGRAVAR_H_INCLUDED

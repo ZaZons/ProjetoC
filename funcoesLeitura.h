@@ -1,6 +1,9 @@
 #ifndef FUNCOESLEITURA_H_INCLUDED
 #define FUNCOESLEITURA_H_INCLUDED
 
+#define MIN_ANO 2022
+#define MAX_ANO 2023
+
 typedef struct{
     int ano;
     int mes;

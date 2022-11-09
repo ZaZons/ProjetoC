@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "funcoesLeitura.h"
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
 #include "funcoesInformacao.h"
+#include "funcoesGravar.h"
 #include "funcoesSair.h"
 
 void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes)
@@ -23,7 +26,6 @@ void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, ti
     }while(opcao != 1 && opcao != 0);
 
     if(opcao == 1) {
-
         gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, -1);
     }
 

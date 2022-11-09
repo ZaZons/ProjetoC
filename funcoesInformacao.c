@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "funcoesLeitura.h"
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
@@ -9,34 +11,34 @@
 void percTecnologia(int n, int nTotal, float *percN)
 {
 
-    *percN = ((float)n * 100)/nTotal
+    *percN = ((float)n * 100)/nTotal;
 }
 
-void avariasResolvidas(int nAvarias, int *avariasR)
+void avariasResolvidas(tipoIntervencao intervencoes[], int nAvarias, int *avariasR)
 {
     int i;
 
     for(i=0; i<nAvarias; i++)
     {
-        if(intervencoes[i].estadoFuncionamento == 1)
+        if(intervencoes[i].operacional == 1)
         {
             *avariasR++;
         }
     }
 }
 
-void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, tipoAvaria avarias)
+void informacoes (int nPontos, tipoIp pontosIp[], tipoIntervencao intervencoes[], int nIntervencoes, tipoAvaria avarias[], int nAvarias)
 {
-    int i, nMercurio=0, nSodio=0, nLED=0, custoTotalIntervencao=0, contador=0;
+    int i, nMercurio=0, nSodio=0, nLED=0, custoTotalIntervencao=0;
     float percMercurio=0, percSodio=0, percLED=0, mediaCustoIntervencao=0;
 
     for(i=0; i<nPontos; i++)
     {
-        if(pontosIp[i].tipoTecnologia == 1){
-            nVaporMercurio++;
+        if(strcmp(pontosIp[i].tipoTecnologia, "Vapor de mercurio") == 0){
+            nMercurio++;
         }else{
-            if(pontosIp[i].tipoTecnologia == 2){
-                nVaporSodio++;
+            if(strcmp(pontosIp[i].tipoTecnologia, "Vapor de sodio") == 0){
+                nSodio++;
             }else{
                 nLED++;
             }
@@ -53,7 +55,7 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
 
     for(i=0; i<nIntervencoes; i++)
     {
-        custoTotalIntervencao += intervencoes[i].custoIntervencao
+        custoTotalIntervencao += intervencoes[i].custoIntervencao;
     }
 
     mediaCustoIntervencao = (float)custoTotalIntervencao / nIntervencoes;
@@ -67,7 +69,7 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
     int idPonto;
     for(i = 0; i < nAvarias; i++)
     {
-        id = avaria[i].idPontoIp;
+        id = avarias[i].idPontoIp;
         for(j = 0; j < nPontos; i++)
         {
             if (pontosIp[j].id == id){
@@ -84,18 +86,18 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
     tipoData novaData;
     int contadorMenorData=0;
 
-    novadata = lerdata();
+    novaData = lerData();
 
     for(i=0; i<nAvarias;i++)
     {
-        if(avarias[i].dataAvaria.ano <= novadata.ano){
-            if(avarias[i].dataAvaria.mes <= novadata.mes){
-                if(avarias[i].dataAvaria.dia < novadata.dia)
+        if(avarias[i].dataAvaria.ano <= novaData.ano){
+            if(avarias[i].dataAvaria.mes <= novaData.mes){
+                if(avarias[i].dataAvaria.dia < novaData.dia)
                     contadorMenorData++;
             }
         }
     }
-    printf("\nNumero de avarias até %d-%d-%d: %d"novadata.dia, novaData.mes, novaData.ano, contadorMenorData);
+    printf("\nNumero de avarias até %d-%d-%d: %d", novaData.dia, novaData.mes, novaData.ano, contadorMenorData);
 
 
 
@@ -107,12 +109,12 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
 
     for(i=0; i<nPontos; i++)
     {
-        idSubtituicao = pontosIp.id;
+        idSubtituicao = pontosIp[i].id;
 
         for(j=0; j<nIntervencoes; j++)
         {
             if(intervencoes[i].substituicaoLuminaria == 1){
-            contadorNumSubstituicoes++;
+            contadorSubstituicao++;
             }
             if(contadorSubstituicao > auxSubstituicao){
                 auxSubstituicao = contadorSubstituicao;
@@ -127,16 +129,16 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
 
     for(i=0; i<nPontos; i++)
     {
-        id = pontosIp.id
+        id = pontosIp[i].id;
 
         for(j=0; j<nAvarias; j++)
         {
             if(avarias[j].idPontoIp == id){
-                dataConsecutiva.ano = avarias[j].dataAvaria.ano
-                dataConsecutiva.mes = avarias[j].dataAvaria.mes
-                dataConsecutiva.dia = avarias[j].dataAvaria.dia
+                dataConsecutiva.ano = avarias[j].dataAvaria.ano;
+                dataConsecutiva.mes = avarias[j].dataAvaria.mes;
+                dataConsecutiva.dia = avarias[j].dataAvaria.dia;
 
-                dataConsecutiva = soma10Dias(dataConsecutiva);
+                soma10Dias(&dataConsecutiva);
 
 
                 if(intervencoes[j].dataIntervencao.ano >= dataConsecutiva.ano){
@@ -152,18 +154,18 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
     printf("\nNumero de Avarias não resolvidas durante 10 dias: %d", contadorDiasConsecutivos);
 }
 
-int soma10Dias(tipoData dataConsecutiva) {
+void soma10Dias(tipoData *dataConsecutiva) {
     int diasMes = 31;
-    dataConsecutiva.dia +=10;
+    dataConsecutiva->dia +=10;
 
-    if (dataConsecutiva.mes == 2) {
-        if (dataConsecutiva.ano % 4) != 0) {
+    if (dataConsecutiva->mes == 2) {
+        if ((dataConsecutiva->ano % 4) != 0) {
             diasMes = 29;
         } else {
             diasMes = 28;
         }
     } else {
-        switch(dataConsecutiva.mes) {
+        switch(dataConsecutiva->mes) {
             case 4:
             case 6:
             case 9:
@@ -172,13 +174,13 @@ int soma10Dias(tipoData dataConsecutiva) {
         }
     }
 
-    if (dataConsecutiva.dia > diasMes) {
-        dataConsecutiva.dia -= diasMes;
-        dataConsecutiva.mes++;
+    if (dataConsecutiva->dia > diasMes) {
+        dataConsecutiva->dia -= diasMes;
+        dataConsecutiva->mes++;
     }
 
-    if (dataConsecutiva.mes == 12) {
-        dataConsecutiva.mes = 1;
-        dataConsecutiva.ano++;
+    if (dataConsecutiva->mes == 12) {
+        dataConsecutiva->mes = 1;
+        dataConsecutiva->ano++;
     }
 }

@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 #include "funcoesLeitura.h"
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
+#include "funcoesInformacao.h"
 #include "funcoesListagem.h"
 #include "funcoesGravar.h"
 
@@ -22,21 +25,22 @@ int main() {
     tipoIntervencao intervencoes[MAX_INTERVENCOES];
     int nIntervencoes = 0;
 
-    int avariasResolvidas = 0;
-    float percLED = 0;
+    int avariasR = 0;
+    float percLED = 0.0;
 
-    int abrirAoIniciar = lerAbrirAoIniciar();
+    //int abrirAoIniciar = lerAbrirAoIniciar();
+    int nLed;
 
-    if (abrirAoIniciar == 1) {
-        lerFicheiro(pontosIp, &nPontos, avarias,  &nAvarias, intervencoes, &nIntervencoes);
-    }
+    //if (abrirAoIniciar == 1) {
+    //    lerFicheiro(pontosIp, &nPontos, avarias,  &nAvarias, intervencoes, &nIntervencoes);
+    //}
 
     int opcao;
     do {
         //tecLED(nLED, nPontos, &percLED); //
         //avariasResolvidas(nAvarias, &avariasResolvidas);
-        percTecnologia(nLED, nPontos, &percLED); //
-        avariasResolvidas(nAvarias, &avariasResolvidas);
+        percTecnologia(nLed, nPontos, &percLED); //
+        avariasResolvidas(intervencoes, nAvarias, &avariasR);
 
 
         opcao = menu(nPontos, nAvarias);
@@ -54,13 +58,14 @@ int main() {
 
                 break;
             case 5:
-                informacoes();
+                //informacoes();
                 break;
             case 6:
                 gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, -1);
                 break;
             case 0:
-                sair(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
+                //sair(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
+                break;
         }
 
     } while (opcao != 0);
