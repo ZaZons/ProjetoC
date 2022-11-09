@@ -26,13 +26,10 @@ int main() {
 
     int opcao;
     do {
-<<<<<<< Updated upstream
-        //tecLED(nLED, nPontos, &percLED); //
-        //avariasResolvidas(nAvarias, &avariasResolvidas);
-=======
+
         percTecnologia(nLED, nPontos, &percLED); //
         avariasResolvidas(nAvarias, &avariasResolvidas);
->>>>>>> Stashed changes
+
 
         opcao = menu(nPontos, nAvarias);
         switch(opcao) {
