@@ -57,7 +57,7 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
     }
 
     mediaCustoIntervencao = (float)custoTotalIntervencao / nIntervencoes;
-    printf("\n Custo média de Intervencoes: %.1f", mediaCustoIntervencao);
+    printf("\nCusto média de Intervencoes: %.1f", mediaCustoIntervencao);
 
     int j;
     int id=-1;
@@ -120,7 +120,7 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
             }
         }
     }
-    printf("Ponto IP com maior numero de substituicao de luminárias: %d", auxIdSubstituicao);
+    printf("\nPonto IP com maior numero de substituicao de luminárias: %d", auxIdSubstituicao);
 
     tipoData dataConsecutiva;
     int contadorDiasConsecutivos = 0;
@@ -136,9 +136,8 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
                 dataConsecutiva.mes = avarias[j].dataAvaria.mes
                 dataConsecutiva.dia = avarias[j].dataAvaria.dia
 
-                dataConsecutiva.ano +=10;
-                dataConsecutiva.mes +=10;
-                dataConsecutiva.dia +=10;
+                dataConsecutiva = soma10Dias(dataConsecutiva);
+
 
                 if(intervencoes[j].dataIntervencao.ano >= dataConsecutiva.ano){
                     if(intervencoes[j].dataIntervencao.mes >=dataConsecutiva.mes){
@@ -149,5 +148,37 @@ void informacoes (int nPontos, tipoIp pontosIp, tipoIntervencao intervencoes, ti
                 }
             }
         }
+    }
+    printf("\nNumero de Avarias não resolvidas durante 10 dias: %d", contadorDiasConsecutivos);
+}
+
+int soma10Dias(tipoData dataConsecutiva) {
+    int diasMes = 31;
+    dataConsecutiva.dia +=10;
+
+    if (dataConsecutiva.mes == 2) {
+        if (dataConsecutiva.ano % 4) != 0) {
+            diasMes = 29;
+        } else {
+            diasMes = 28;
+        }
+    } else {
+        switch(dataConsecutiva.mes) {
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                diasMes = 30;
+        }
+    }
+
+    if (dataConsecutiva.dia > diasMes) {
+        dataConsecutiva.dia -= diasMes;
+        dataConsecutiva.mes++;
+    }
+
+    if (dataConsecutiva.mes == 12) {
+        dataConsecutiva.mes = 1;
+        dataConsecutiva.ano++;
     }
 }
