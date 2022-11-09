@@ -7,7 +7,7 @@
 #include "funcoesInformacao.h"
 #include "funcoesSair.h"
 
-void sair(void)
+void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes)
 {
     char opcao;
 
@@ -38,6 +38,7 @@ void sair(void)
     }while(opcao != 1 && opcao != 0);
 
     if(opcao == 1) {
+        gravarAbrirAoIniciar(opcao);
 
     }
 }

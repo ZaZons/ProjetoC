@@ -60,7 +60,7 @@ int main() {
                 gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, -1);
                 break;
             case 0:
-
+                sair(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
         }
 
     } while (opcao != 0);
