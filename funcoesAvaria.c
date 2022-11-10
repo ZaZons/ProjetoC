@@ -56,20 +56,20 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
     min = 1;
     max = 4;
     printf("\nInsira o meio de comunicacao da avaria (1 - telefone, 2 - carta, 3 - email, 4 - portal)");
-    intMeio = lerEscolhaMultipla(min, max);
+    intMeio = lerInt(min, max);
 
     switch (intMeio) {
         case 1:
-            strcpy("Telefone", novaAvaria.meioComunicacao);
+            strcpy(novaAvaria.meioComunicacao, COMUNICACAO_1);
             break;
         case 2:
-            strcpy("Carta", novaAvaria.meioComunicacao);
+            strcpy(novaAvaria.meioComunicacao, COMUNICACAO_2);
             break;
         case 3:
-            strcpy("Email", novaAvaria.meioComunicacao);
+            strcpy(novaAvaria.meioComunicacao, COMUNICACAO_3);
             break;
         case 4:
-            strcpy("Portal", novaAvaria.meioComunicacao);
+            strcpy(novaAvaria.meioComunicacao, COMUNICACAO_4);
             break;
     }
 

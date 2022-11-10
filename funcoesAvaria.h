@@ -6,6 +6,11 @@
 #define MAX_MEIO_COMUNICACAO 30
 #define MAX_DESCRICAO 100
 
+#define COMUNICACAO_1 "Telefone"
+#define COMUNICACAO_2 "Carta"
+#define COMUNICACAO_3 "Email"
+#define COMUNICACAO_4 "Portal"
+
 typedef struct {
     char codRegisto[MAX_CODIGO_AVARIA];
     int idPontoIp;

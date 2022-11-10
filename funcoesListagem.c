@@ -39,8 +39,8 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
 void mostrarPontosLed(tipoIp pontosIp[], int nPontos) {
     printf("\nPontos IP com luminarias LED: {");
     for (int i = 0; i < nPontos; i++) {
-        if (strcmp(pontosIp[i].tipoTecnologia, "LED") == 0) {
-            printf("\n%d", pontosIp[i].id);
+        if (strcmp(pontosIp[i].tipoTecnologia, TECNOLOGIA_LED) == 0) {
+            printf("\n\t%d", pontosIp[i].id);
         }
     }
     printf("\n}\n");
