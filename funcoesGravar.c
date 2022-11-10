@@ -9,9 +9,9 @@
 #include "funcoesGravar.h"
 
 void gravarFicheiro(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int abrirAoIniciar) {
-    FILE* saveFile = fopen("parque.dat", "wb");
+    FILE *saveFile = fopen("parque.dat", "wb");
 
-    if (saveFile == 0) {
+    if (saveFile == NULL) {
         printf("\nErro ao abrir o ficheiro\n");
     } else {
         if (abrirAoIniciar != -1) {
@@ -30,9 +30,9 @@ void gravarFicheiro(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nA
 }
 
 void gravarAbrirAoIniciar(int abrirAoIniciar) {
-    FILE* abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
+    FILE *abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
 
-    if (abrirAoIniciarFile == 0) {
+    if (abrirAoIniciarFile == NULL) {
         printf("\nErro ao abrir o ficheiro");
     } else {
         fwrite(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
@@ -43,9 +43,9 @@ void gravarAbrirAoIniciar(int abrirAoIniciar) {
 }
 
 void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAvarias, tipoIntervencao intervencoes[], int *nIntervencoes) {
-    FILE* saveFile = fopen("parque.dat", "wb");
+    FILE *saveFile = fopen("parque.dat", "wb");
 
-    if (saveFile == 0) {
+    if (saveFile == NULL) {
         printf("\nErro ao abrir o ficheiro");
     } else {
         fwrite(pontosIp, sizeof(tipoIp), MAX_IP, saveFile);
@@ -55,21 +55,23 @@ void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAv
         fwrite(intervencoes, sizeof(tipoIntervencao), MAX_INTERVENCOES, saveFile);
         fwrite(nIntervencoes, sizeof(int), 1, saveFile);
         fclose(saveFile);
+
+        printf("Ficheiro lido com sucesso.");
     }
 }
 
 int lerAbrirAoIniciar() {
-    FILE* abrirAoIniciarFile;
+    FILE *abrirAoIniciarFile;
     int abrirAoIniciar;
     do {
         abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "rb");
 
-        if (abrirAoIniciarFile == 0) {
+        if (abrirAoIniciarFile == NULL) {
             abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
         } else {
             fread(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
         }
-    } while (abrirAoIniciarFile != 0);
+    } while (abrirAoIniciarFile != NULL);
     fclose(abrirAoIniciarFile);
 
     return abrirAoIniciar;

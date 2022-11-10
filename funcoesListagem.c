@@ -9,15 +9,17 @@
 #include "funcoesListagem.h"
 
 void mostrarListagem(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
-    mostrarPontosIp(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
-    mostrarPontosLed(pontosIp, nPontos);
-    mostrarAvarias(avarias, nAvarias);
-    mostrarHistoricoAvarias(avarias, nAvarias);
-
+    if (nPontos > 0) {
+        mostrarPontosIp(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
+        mostrarPontosLed(pontosIp, nPontos);
+        mostrarAvarias(avarias, nAvarias);
+        mostrarHistoricoAvarias(pontosIp, nPontos, avarias, nAvarias);
+    } else {
+        printf("\n\nERRO - Nao existem pontos IP ou avarias registados.\n");
+    }
 }
 
 void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
-    printf("\n");
     printf("\nPontos IP: {");
     for (int i = 0; i < nPontos; i++) {
         int quantidadeAvarias = calcularQuantidadeAvarias(avarias, nAvarias, pontosIp[i].id);
@@ -40,14 +42,13 @@ void mostrarPontosLed(tipoIp pontosIp[], int nPontos) {
     printf("\nPontos IP com luminarias LED: {");
     for (int i = 0; i < nPontos; i++) {
         if (strcmp(pontosIp[i].tipoTecnologia, TECNOLOGIA_LED) == 0) {
-            printf("\n\t%d", pontosIp[i].id);
+            printf("\n\tPonto numero %d", pontosIp[i].id);
         }
     }
     printf("\n}\n");
 }
 
 void mostrarAvarias(tipoAvaria avarias[], int nAvarias) {
-    printf("\n");
     printf("\nAvarias: {");
     for (int i = 0; i < nAvarias; i++) {
         printf("\n\tAvaria %s: {", avarias[i].codRegisto);
@@ -60,20 +61,34 @@ void mostrarAvarias(tipoAvaria avarias[], int nAvarias) {
     printf("\n}\n");
 }
 
-void mostrarHistoricoAvarias(tipoAvaria avarias[], int nAvarias) {
+void mostrarHistoricoAvarias(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     int idPontoHistorico;
     int nAvariasFiltradas = 0;
+    int pontoExiste;
     tipoAvaria avariasFiltradas[MAX_AVARIAS];
-    printf("\nSelecione o ponto IP para mostrar o historico de avarias: ");
-    idPontoHistorico = lerInt(MIN_IP_ID, MAX_IP_ID);
 
-    for (int i = 0; i < nAvarias; i++) {
-        if (avarias[i].idPontoIp == idPontoHistorico) {
-            avariasFiltradas[nAvariasFiltradas] = avarias[i];
-            nAvariasFiltradas++;
-        }
-    }
-    mostrarAvarias(avariasFiltradas, nAvariasFiltradas);
+    do {
+        printf("\n\nSelecione o ponto IP para mostrar o historico de avarias: ");
+        idPontoHistorico = lerInt(MIN_IP_ID, MAX_IP_ID);
+
+        pontoExiste = procuraPontoIp(pontosIp, nPontos, idPontoHistorico);
+        if (pontoExiste == -1) {
+            printf("\nERRO - O ponto selecionado nao existe.\n");
+        } else {
+            for (int i = 0; i < nAvarias; i++) {
+                if (avarias[i].idPontoIp == idPontoHistorico) {
+                    avariasFiltradas[nAvariasFiltradas] = avarias[i];
+                    nAvariasFiltradas++;
+                }
+            }
+
+            if (nAvariasFiltradas == 0) {
+                printf("\nERRO - O ponto selecionado nunca ficou avariado.\n");
+            } else {
+                mostrarAvarias(avariasFiltradas, nAvariasFiltradas);
+            }
+        }        
+    } while (pontoExiste == -1);
 }
 
 void mostrarPontoPorAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {

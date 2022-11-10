@@ -18,7 +18,6 @@ typedef struct {
 
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas);
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
-int validarData(tipoData dataAvaria, tipoData dataIntervencao);
 void gravarLog(tipoIntervencao novaIntervancao, int idIp);
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 

@@ -71,6 +71,7 @@ tipoData lerData() {
 
     min = 2022;
     max = 2023;
+    printf("\n");
     printf("Ano: ");
     novaData.ano = lerInt(min, max);
 
@@ -135,21 +136,34 @@ int lerEscolhaMultipla(int min, int max) {
     return n;
 }
 
-// int lerPotencia(int limite1, int limite2, int limite3) {
-//     int n;
+int validarData(tipoData dataMenor, tipoData dataMaior) {
+    int dataValida = 1;
 
-//     do {
-//         scanf("%d", &n);
-//         limparBufferStdin();
+    if (dataMenor.ano > dataMaior.ano) {
+        dataValida = 0;
+    } else {
+        if (dataMenor.mes > dataMaior.mes) {
+            dataValida = 0;
+        } else {
+            if (dataMenor.mes == dataMaior.mes) {
+                if (dataMenor.dia > dataMaior.dia) {
+                    dataValida = 0;
+                } else {
+                    if (dataMenor.dia == dataMaior.dia) {
+                        if (dataMenor.hora > dataMaior.hora) {
+                            dataValida = 0;
+                        } else {
+                            if (dataMenor.hora == dataMaior.hora) {
+                                if (dataMenor.minuto >= dataMaior.minuto) {
+                                    dataValida = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-//         if (n != limite1) {
-//             if (n != limite2) {
-//                 if (n != limite3) {
-//                     printf("ERRO - O VALOR E INVALIDO, INSERIR [%d, %d ou %d]", limite1, limite2, limite3);
-//                 }
-//             }
-//         }
-//     } while (n != limite1 && n != limite2 && n != limite3);
-
-//     return n;
-// }
+    return dataValida;
+}

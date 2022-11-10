@@ -30,7 +30,7 @@ void mostrarAvarias(tipoAvaria avarias[], int nAvarias);
 /**
  * Mostra o historico de avarias de um determinado ponto IP.
 */
-void mostrarHistoricoAvarias(tipoAvaria avarias[], int nAvarias);
+void mostrarHistoricoAvarias(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 
 /**
  * Mostra os dados de um determinado ponto a partir do codigo de uma das suas avarias.

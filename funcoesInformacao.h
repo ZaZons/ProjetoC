@@ -2,7 +2,7 @@
 #define FUNCOESINFORMACAO_H_INCLUDED
 
 void percTecnologia(tipoIp pontosIp[], int nPontos, char tecnologia[], float *percTec);
-void calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nAvarias,int *avariasR);
+int calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nAvarias);
 void informacoes(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 void mostrarPontosIpTecnologia(tipoIp pontosIp[], int nPontos);
 void mostrarCustoMedioIntervencoes(tipoIntervencao intervencoes[], int nIntervencoes);

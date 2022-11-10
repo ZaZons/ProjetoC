@@ -9,46 +9,46 @@
 #include "funcoesInformacao.h"
 
 void percTecnologia(tipoIp pontosIp[], int nPontos, char tecnologia[], float *percTec) {
-    if (nPontos != 0) {
+    if (nPontos > 0) {
         int nTecnologia = calcularTecnologiaPontos(pontosIp, nPontos, tecnologia);
         *percTec = (float) nTecnologia / nPontos;
     }
 }
 
-void calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nIntervencoes, int *avariasR) {
-    if (nIntervencoes != 0) {
+int calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nIntervencoes) {
+    int avariasResolvidas = 0;
+
+    if (nIntervencoes > 0) {
         for(int i = 0; i < nIntervencoes; i++) {
             if (intervencoes[i].operacional == 1) {
-                *avariasR++;
+                avariasResolvidas++;
             }
         }
     }
+
+    return avariasResolvidas;
 }
 
 void informacoes(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
-    mostrarPontosIpTecnologia(pontosIp, nPontos);
-    mostrarCustoMedioIntervencoes(intervencoes, nIntervencoes);
-    mostrarPontoMaisAvarias(pontosIp, nPontos, avarias, nAvarias);
-    mostrarAvariasAteData(avarias, nAvarias);
-    mostrarPontoMaisSubstituicao(pontosIp, nPontos, intervencoes, nIntervencoes);
-    mostrarAvariadoMais10Dias(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
-
-    /*
-    if (dataConsecutiva.ano == intervencoes[k].dataIntervencao.ano) {
-        if (dataConsecutiva.mes >= intervencoes[k].dataIntervencao.mes) {
-            if (dataConsecutiva.dia >= intervencoes[k].dataIntervencao.dia) {
-                contadorDiasConsecutivos++;
+    if (nPontos > 0) {
+        mostrarPontosIpTecnologia(pontosIp, nPontos);
+        
+        if (nAvarias > 0) {
+            mostrarPontoMaisAvarias(pontosIp, nPontos, avarias, nAvarias);
+            mostrarAvariasAteData(avarias, nAvarias);
+            if (nIntervencoes > 0) {
+                mostrarCustoMedioIntervencoes(intervencoes, nIntervencoes);
+                mostrarPontoMaisSubstituicao(pontosIp, nPontos, intervencoes, nIntervencoes);
+                mostrarAvariadoMais10Dias(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
+            } else {
+                printf("\n\nNao existem intervencoes registadas.\n");
             }
+        } else {
+            printf("\n\nNao existem avarias ou intervencoes registadas.\n");
         }
     } else {
-        if (dataConsecutiva.ano > intervencoes[k].dataIntervencao.ano) {
-            if (dataConsecutiva.mes > 1) {
-                contadorDiasConsecutivos++;
-            } else {
-                if (dataConsecutiva.dia )
-            }
-        }
-    }*/
+        printf("\n\nNao existem pontos IP, avarias ou intervencoes registados.\n");
+    }
 }
 
 void mostrarPontosIpTecnologia(tipoIp pontosIp[], int nPontos) {
@@ -80,48 +80,42 @@ void mostrarCustoMedioIntervencoes(tipoIntervencao intervencoes[], int nInterven
 }
 
 void mostrarPontoMaisAvarias(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
-    if (nAvarias == 0) {
-        printf("\nNenhum ponto esta avariado.");
-    } else {
-        int id = -1;
-        int idaux = -1;
-        int contador = 0;
-        int aux = 0;
+    int id = -1;
+    int idaux = -1;
+    int contador = 0;
+    int aux = 0;
 
-        for(int i = 0; i < nAvarias; i++) {
-            id = avarias[i].idPontoIp;
-            for(int j = 0; j < nPontos; i++) {
-                if (pontosIp[j].id == id){
-                    contador++;
-                }
-                if (contador > aux){
-                    aux = contador;
-                    idaux = id;
-                }
+    for(int i = 0; i < nAvarias; i++) {
+        id = avarias[i].idPontoIp;
+        for(int j = 0; j < nPontos; j++) {
+            if (pontosIp[j].id == id){
+                contador++;
+            }
+            if (contador > aux){
+                aux = contador;
+                idaux = id;
             }
         }
-
-        printf("\nPonto Ip com maior com maior numero de avarias: %d", idaux);
     }
+
+    printf("\nPonto Ip com maior com maior numero de avarias: %d\n", idaux);
 }
 
 void mostrarAvariasAteData(tipoAvaria avarias[], int nAvarias) {
     tipoData novaData;
     int contadorMenorData = 0;
 
-    printf("Insira a data limite para consultar o numero as avarias: ");
+    printf("\nInsira a data limite para consultar o numero as avarias: ");
     novaData = lerData();
 
     for(int i = 0; i < nAvarias; i++) {
-        if(avarias[i].dataAvaria.ano <= novaData.ano){
-            if(avarias[i].dataAvaria.mes <= novaData.mes){
-                if(avarias[i].dataAvaria.dia < novaData.dia) {
-                    contadorMenorData++;
-                }
-            }
+        int menor = validarData(avarias[i].dataAvaria, novaData);
+        
+        if (menor == 1) {
+            contadorMenorData++;
         }
     }
-    printf("\nNumero de avarias ate %d-%d-%d: %d", novaData.dia, novaData.mes, novaData.ano, contadorMenorData);
+    printf("\nNumero de avarias ate %2d/%2d/%4d: %d", novaData.dia, novaData.mes, novaData.ano, contadorMenorData);
 }
 
 void mostrarPontoMaisSubstituicao(tipoIp pontosIp[], int nPontos, tipoIntervencao intervencoes[], int nIntervencoes) {

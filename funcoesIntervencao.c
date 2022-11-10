@@ -7,18 +7,6 @@
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
 
-int validacaoIntervencao(int n1, int n2) {
-    int valor = 0;
-
-    if (n1 == n2) {
-        valor = 1;
-    } else {
-        valor = 0;
-    }
-
-    return valor;
-}
-
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas) {
     if (nIntervencoes >= MAX_INTERVENCOES) {
         printf("\nERRO - Numero maximo de intervencoes atingido.");
@@ -74,7 +62,7 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
                         printf("Insira a data e hora da intervencao: ");
                         dataIntervencao = lerData(MIN_ANO, MAX_ANO);
 
-                        validarData(avarias[avariaExiste].dataAvaria, dataIntervencao);
+                        validacaoData = validarData(avarias[avariaExiste].dataAvaria, dataIntervencao);
 
                         if (validacaoData != 1) {
                             printf("\nERRO - A intervencao tem de ser efetuada depois da avaria ser registada.\n\n");
@@ -84,15 +72,15 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
 
                     strcpy(cpe, pontosIp[validacaoIp].cpe);
 
-                    printf("Insira a descricao da intervencao: ");
+                    printf("\nInsira a descricao da intervencao: ");
                     lerString(novaIntervencao.descricaoIntervencao, MAX_DESCRICAO_INTERVENCAO);
 
                     printf("Insira o custo da intervencao: ");
                     novaIntervencao.custoIntervencao = lerFloat(MIN_CUSTO, MAX_CUSTO);
 
-                    int min=0;
-                    int max=1;
-                    printf("\nFoi efetuada substituicao de Luminaria? (0 - Nao / 1 - Sim): ");
+                    int min = 0;
+                    int max = 1;
+                    printf("Foi efetuada substituicao de Luminaria? (0 - Nao / 1 - Sim): ");
                     novaIntervencao.substituicaoLuminaria = lerInt(min, max);
 
                     if (novaIntervencao.substituicaoLuminaria == 1) {
@@ -115,7 +103,9 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
                         }
                     }
 
-                    printf("\nO Ponto IP ficou operacional? (0 - Nao / 1 - Sim): ");
+                    min = 0;
+                    max = 1;
+                    printf("O Ponto IP ficou operacional? (0 - Nao / 1 - Sim): ");
                     novaIntervencao.operacional = lerInt(min, max);
 
                     pontosIp[validacaoIp].estadoFuncionamento = novaIntervencao.operacional;
@@ -128,38 +118,14 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
     return novaIntervencao;
 }
 
-int validarData(tipoData dataAvaria, tipoData dataIntervencao) {
-    int dataValida = 1;
-
-    if (dataAvaria.ano > dataIntervencao.ano) {
-        dataValida = 0;
-    } else {
-        if (dataAvaria.mes > dataIntervencao.mes) {
-            dataValida = 0;
-        } else {
-            if (dataAvaria.mes == dataIntervencao.mes) {
-                if (dataAvaria.dia > dataIntervencao.dia) {
-                    dataValida = 0;
-                } else {
-                    if (dataAvaria.dia == dataIntervencao.dia) {
-                        if (dataAvaria.hora > dataIntervencao.hora) {
-                            dataValida = 0;
-                        } else {
-                            
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    return dataValida;
-}
-
 void gravarLog(tipoIntervencao novaIntervencao, int idIp) {
-    FILE* ficheiroIntervencoes = fopen("intervencoes.txt", "a");
+    FILE *ficheiroIntervencoes;
+    ficheiroIntervencoes = fopen("intervencoes.txt", "w");
 
-    if (ficheiroIntervencoes != 0) {
+    if (ficheiroIntervencoes == NULL) {
+        printf("\nErro ao abrir o ficheiro.");
+    } else {
+        printf("dentro do ficheiro");
         fprintf(ficheiroIntervencoes, "Intervencao #%s: {", novaIntervencao.codIntervencao);
         fprintf(ficheiroIntervencoes, "\n\tPonto #%d", idIp);
         fprintf(ficheiroIntervencoes, "\n\tData: %2d/%2d/%4d %2d:%2d", novaIntervencao.dataIntervencao.dia, novaIntervencao.dataIntervencao.mes, novaIntervencao.dataIntervencao.ano, novaIntervencao.dataIntervencao.hora, novaIntervencao.dataIntervencao.minuto);
@@ -167,9 +133,9 @@ void gravarLog(tipoIntervencao novaIntervencao, int idIp) {
         fprintf(ficheiroIntervencoes, "\n\tSubstituida luminaria: %d", novaIntervencao.substituicaoLuminaria);
         fprintf(ficheiroIntervencoes, "\n\tPonto ficou operacional: %d", novaIntervencao.operacional);
         fprintf(ficheiroIntervencoes, "\n}\n");
-
-        fclose(ficheiroIntervencoes);
     }
+
+    fclose(ficheiroIntervencoes);
 }
 
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
