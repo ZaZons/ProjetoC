@@ -6,18 +6,22 @@
 #include "funcoesIP.h"
 #include "funcoesAvaria.h"
 
-int registarAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos) {
+int registarAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     if (nAvarias >= MAX_AVARIAS) {
-        printf("Numero maximo de avarias atingido.\n");
+        printf("\nERRO - Numero maximo de avarias atingido.\n\n");
     } else {
-        avarias[nAvarias] = lerDadosAvaria(avarias, nAvarias, pontosIp, nPontos);
-        nAvarias++;
+        if (nPontos == 0) {
+            printf("\nERRO - Para registar avarias precisa de adicionar pontos antes\n\n");
+        } else {
+            avarias[nAvarias] = lerDadosAvaria(avarias, nAvarias, pontosIp, nPontos);
+            nAvarias++;
+        }
     }
 
     return nAvarias;
 }
 
-tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos) {
+tipoAvaria lerDadosAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     tipoAvaria novaAvaria;
     int min;
     int max;
@@ -32,7 +36,7 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
         verificacao = procuraAvaria(avarias, nAvarias, codRegisto);
 
         if (verificacao != -1) {
-            printf("\nERRO - Avaria ja registada!");
+            printf("\nERRO - Avaria ja registada!\n\n");
         }
     } while (verificacao != -1);
     strcpy(novaAvaria.codRegisto, codRegisto);
@@ -40,13 +44,13 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
     // Numero de identificacao do ponto IP avariado
     int idPontoIp;
     do {
-        printf("\nInsira o numero de identificacao do ponto IP avariado: ");
+        printf("Insira o numero de identificacao do ponto IP avariado: ");
         idPontoIp = lerInt(MIN_IP_ID, MAX_IP_ID);
 
         verificacao = procuraPontoIp(pontosIp, nPontos, idPontoIp);
 
         if (verificacao == -1) {
-            printf("\nERRO - Ponto IP nao existente!");
+            printf("\nERRO - Ponto IP nao existente\n\n");
         }
     } while (verificacao == -1);
     novaAvaria.idPontoIp = idPontoIp;
@@ -84,10 +88,10 @@ tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[],
     return novaAvaria;
 }
 
-int procuraAvaria(tipoAvaria avarias[], int n, char codRegisto[]) {
+int procuraAvaria(tipoAvaria avarias[], int nAvarias, char codRegisto[]) {
     int pos = -1;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < nAvarias; i++) {
         if (strcmp(avarias[i].codRegisto, codRegisto) == 0) {
             pos = i;
         }

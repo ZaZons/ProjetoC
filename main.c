@@ -28,7 +28,6 @@ int main() {
   int nAvarias = 0;
   int nIntervencoes = 0;
   int avariasResolvidas = 0;
-  int nLed;
   float percLed;
 
   int abrirAoIniciar = lerAbrirAoIniciar();
@@ -39,16 +38,16 @@ int main() {
 
   int opcao;
   do {
-    percPontosLed(pontosIp, nPontos, &percLed);
+    percTecnologia(pontosIp, nPontos, TECNOLOGIA_LED, &percLed);
     calcularAvariasResolvidas(intervencoes, nIntervencoes, &avariasResolvidas);
 
-    opcao = menu(nPontos, nAvarias, percLed, avariasResolvidas);
+    opcao = menu(nPontos, nAvarias, avariasResolvidas, percLed);
     switch (opcao) {
     case 1:
       nPontos = novoPontoIp(pontosIp, nPontos);
       break;
     case 2:
-
+      nAvarias = registarAvaria(pontosIp, nPontos, avarias, nAvarias);
       break;
     case 3:
 
@@ -74,7 +73,7 @@ int main() {
 int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed) {
   int opcao = 0;
 
-  printf("\n\tGestao de Pontos de Iluminacao Publica(IP)");
+  printf("\tGestao de Pontos de Iluminacao Publica(IP)");
   printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", nPontos, nAvarias);
   printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.2f", avariasResolvidas, percLed);
   printf("\n   1. Novo ponto IP");

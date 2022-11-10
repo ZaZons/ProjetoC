@@ -9,18 +9,24 @@
 #include "funcoesInformacao.h"
 
 void percTecnologia(tipoIp pontosIp[], int nPontos, char tecnologia[], float *percTec) {
-    *percTec = (float) calcularTecnologiaPontos(pontosIp, nPontos, tecnologia) / nPontos;
+    if (nPontos != 0) {
+        int nTecnologia = calcularTecnologiaPontos(pontosIp, nPontos, tecnologia);
+        *percTec = (float) (nTecnologia / nPontos) * 100;
+        
+    }
 }
 
 void calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nIntervencoes, int *avariasR) {
-    for(int i = 0; i < nIntervencoes; i++) {
-        if (intervencoes[i].operacional == 1) {
-            *avariasR++;
+    if (nIntervencoes != 0) {
+        for(int i = 0; i < nIntervencoes; i++) {
+            if (intervencoes[i].operacional == 1) {
+                *avariasR++;
+            }
         }
     }
 }
 
-void informacoes (tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, ) {
+void informacoes(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     mostrarPontosIpTecnologia(pontosIp, nPontos);
     mostrarCustoMedioIntervencoes(intervencoes, nIntervencoes);
     mostrarPontoMaisAvarias(pontosIp, nPontos, avarias, nAvarias);
@@ -66,7 +72,7 @@ void mostrarCustoMedioIntervencoes(tipoIntervencao intervencoes[], int nInterven
     float custoTotalIntervencao = 0.0;
     float mediaCustoIntervencao = 0.0;
 
-    for(int i = 0; i < nIntervencoes; i++) {
+    for (int i = 0; i < nIntervencoes; i++) {
         custoTotalIntervencao += intervencoes[i].custoIntervencao;
     }
 
@@ -100,7 +106,7 @@ void mostrarPontoMaisAvarias(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[
     }
 }
 
-void mostrarAvariasAteData(tipoAvaria avarias, int nAvarias) {
+void mostrarAvariasAteData(tipoAvaria avarias[], int nAvarias) {
     tipoData novaData;
     int contadorMenorData = 0;
 
@@ -159,14 +165,14 @@ void mostrarAvariadoMais10Dias(tipoIp pontosIp[], int nPontos, tipoAvaria avaria
                 soma10Dias(&dataConsecutiva);
 
                 for (int k = 0; k < nIntervencoes; k++) {
-                    if (avarias[j].codRegisto == intervencoes[k].codRegisto) {
+                    if (avarias[j].codRegisto == intervencoes[k].codIntervencao) {
                         if (intervencoes[k].operacional == 1) {
-                            if (dataConsecutiva.ano > intervencoes[k].dataIntervencao.ano) {
+                            if (intervencoes[k].dataIntervencao.ano > dataConsecutiva.ano) {
                                 contadorDiasConsecutivos++;
                             } else {
                                 if (intervencoes[k].dataIntervencao.ano == dataConsecutiva.ano) {
                                     if (intervencoes[k].dataIntervencao.mes == dataConsecutiva.mes) {
-                                        if (dataConsecutiva.dia >= intervencoes[k].dataIntervencao.dia) {
+                                        if (intervencoes[k].dataIntervencao.dia >= dataConsecutiva.dia) {
                                             contadorDiasConsecutivos++;
                                         }
                                     } else {

@@ -10,7 +10,7 @@
 int validacaoIntervencao(int n1, int n2) {
     int valor = 0;
 
-    if(n1 == n2) {
+    if (n1 == n2) {
         valor = 1;
     } else {
         valor = 0;
@@ -29,7 +29,7 @@ void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[],
         printf("\nInsira o codigo do IP sujeito a intervencao: ");
         idIp = lerInt(MIN_IP_ID, MAX_IP_ID);
 
-        validacaoIp = procuraPontoIp(pontosIp, n, idIp);
+        validacaoIp = procuraPontoIp(pontosIp, nPontos, idIp);
 
         if(validacaoIp == -1) {
             printf("\nERRO - Ponto IP nao encontrado");

@@ -22,20 +22,20 @@ typedef struct {
 /**
  * Adiciona uma avaria ao vetor de avarias ja existentes e devolve a quantidade de avarias atualizada.
 */
-int registarAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos);
+int registarAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 
 /**
  * Obtem os dados da avaria introduzidos pelo utilizador e armazena-os numa nova estrutura do tipo "tipoAvaria".
  * Devolve a estrutura da nova avaria.
 */
-tipoAvaria lerDadosAvaria(tipoAvaria avarias[], int nAvarias, tipoIp pontosIp[], int nPontos);
+tipoAvaria lerDadosAvaria(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 
 /**
  * Procura por uma avaria com o mesmo codigo de registo que o utilizador inseriu.
  * Caso ja exista uma com o mesmo codigo a funcao retorna a posicao dessa avaria no vetor.
  * Caso nao exista nenhuma avaria com o mesmo codigo entao a funcao retorna -1.
 */
-int procuraAvaria(tipoAvaria avarias[], int n, char codRegisto[]);
+int procuraAvaria(tipoAvaria avarias[], int nAvarias, char codRegisto[]);
 
 /**
  * Calcula e devolve quantidade de avarias que um ponto IP tem, a partir do seu codigo unico.

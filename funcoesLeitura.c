@@ -42,6 +42,11 @@ void lerString(char vetor[], int max) {
     do{
         fgets(vetor, max + 1, stdin);
         tamanhoString = strlen(vetor);
+
+        if (tamanhoString == 1) {
+            printf("\nERRO - Nao pode inserir uma string vazia\n\n");
+            printf("Insira uma string valida: ");
+        }
     } while (tamanhoString == 1);
 
     if (vetor[tamanhoString - 1] != '\n'){

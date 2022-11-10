@@ -55,7 +55,7 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
     int potencia;
     min = 1;
     max = 3;
-    printf("Insira a potencia da luminaria do ponto (1 - %dW, 2 - %dW, 3 - %dW): ", POTENCIA_1, POTENCIA_2, POTENCIA_3);
+    printf("Insira a potencia da luminaria do ponto (1 - %dW / 2 - %dW / 3 - %dW): ", POTENCIA_1, POTENCIA_2, POTENCIA_3);
     potencia = lerInt(min, max);
 
     switch (potencia) {
@@ -110,6 +110,7 @@ int procuraPontoIp(tipoIp pontosIp[], int nPontos, int id) {
         }
     }
 
+printf("%d", pos);
     return pos;
 }
 
