@@ -11,8 +11,7 @@
 void percTecnologia(tipoIp pontosIp[], int nPontos, char tecnologia[], float *percTec) {
     if (nPontos != 0) {
         int nTecnologia = calcularTecnologiaPontos(pontosIp, nPontos, tecnologia);
-        *percTec = (float) (nTecnologia / nPontos) * 100;
-        
+        *percTec = (float) nTecnologia / nPontos;
     }
 }
 

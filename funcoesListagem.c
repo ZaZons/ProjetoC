@@ -27,7 +27,7 @@ void mostrarPontosIp(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int n
         printf("\n\t\tNumero de identificacao: %d", pontosIp[i].id);
         printf("\n\t\tCodigo de Ponto de Entrega: %s", pontosIp[i].cpe);
         printf("\n\t\tPotencia da luminaria (Watts): %d", pontosIp[i].potencia);
-        printf("\n\t\tEstado de funcionamento: %s", pontosIp[i].estadoFuncionamento);
+        printf("\n\t\tEstado de funcionamento: %d", pontosIp[i].estadoFuncionamento);
         printf("\n\t\tTipo de tecnologia: %s", pontosIp[i].tipoTecnologia);
         printf("\n\t\tQuantidade total de avarias: %d", quantidadeAvarias);
         printf("\n\t\tCusto total das reparacoes: %.2f", custoTotalReparacoes);

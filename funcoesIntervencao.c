@@ -19,11 +19,31 @@ int validacaoIntervencao(int n1, int n2) {
     return valor;
 }
 
-void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
+int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas) {
+    if (nIntervencoes >= MAX_INTERVENCOES) {
+        printf("\nERRO - Numero maximo de intervencoes atingido.");
+    } else {
+        if (nAvarias == 0) {
+            printf("\nERRO - Para registar intervencoes precisa de ter avarias registadas.");
+        } else {
+            if (nAvariasResolvidas == nAvarias) {
+                printf("\nERRO - Todas as avarias estao resolvidas.");
+            } else {
+                intervencoes[nIntervencoes] = lerDadosIntervencao(pontosIp, nPontos, avarias, nAvarias);
+                nIntervencoes++;
+            }
+        }
+    }
+
+    return nIntervencoes;
+}
+
+tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     tipoIntervencao novaIntervencao;
     int validacaoIp;
     int idIp;
-    int avariaExiste = 0;
+    int avariaExiste = -1;
+    char cpe[MAX_CPE];
 
     do {
         printf("\nInsira o codigo do IP sujeito a intervencao: ");
@@ -32,7 +52,7 @@ void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[],
         validacaoIp = procuraPontoIp(pontosIp, nPontos, idIp);
 
         if(validacaoIp == -1) {
-            printf("\nERRO - Ponto IP nao encontrado");
+            printf("\nERRO - Ponto IP nao encontrado\n");
         } else {
             if (pontosIp[validacaoIp].estadoFuncionamento == 1) {
                 printf("\nO ponto selecionado nao necessita de intervencao.");
@@ -40,17 +60,29 @@ void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[],
                 for(int i = 0; i < nAvarias; i++) {
                     if(avarias[i].idPontoIp == idIp) {
                         strcpy(novaIntervencao.codIntervencao, avarias[i].codRegisto);
-                        avariaExiste = 1;
+                        avariaExiste = i;
                     }
                 }
 
-                if(avariaExiste == 0) {
+                if(avariaExiste == -1) {
                     printf("\nERRO - Registo de avaria inexistente");
                 } else {
-                    printf("Insira a data e hora da intervencao: ");
-                    novaIntervencao.dataIntervencao = lerData(MIN_ANO, MAX_ANO);
+                    int validacaoData = 0;
+                    tipoData dataIntervencao;
 
-                    strcpy(novaIntervencao.cpe, pontosIp[validacaoIp].cpe);
+                    do {
+                        printf("Insira a data e hora da intervencao: ");
+                        dataIntervencao = lerData(MIN_ANO, MAX_ANO);
+
+                        validarData(avarias[avariaExiste].dataAvaria, dataIntervencao);
+
+                        if (validacaoData != 1) {
+                            printf("\nERRO - A intervencao tem de ser efetuada depois da avaria ser registada.\n\n");
+                        }
+                    } while (validacaoData != 1);
+                    novaIntervencao.dataIntervencao = dataIntervencao;
+
+                    strcpy(cpe, pontosIp[validacaoIp].cpe);
 
                     printf("Insira a descricao da intervencao: ");
                     lerString(novaIntervencao.descricaoIntervencao, MAX_DESCRICAO_INTERVENCAO);
@@ -63,14 +95,81 @@ void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[],
                     printf("\nFoi efetuada substituicao de Luminaria? (0 - Nao / 1 - Sim): ");
                     novaIntervencao.substituicaoLuminaria = lerInt(min, max);
 
+                    if (novaIntervencao.substituicaoLuminaria == 1) {
+                        int luminaria;
+                        min = 1;
+                        max = 3;
+                        printf("Qual foi a luminaria substituida? (1 - %s / 2 - %s / 3 - %s): ", TECNOLOGIA_MERCURIO, TECNOLOGIA_SODIO, TECNOLOGIA_LED);
+                        luminaria = lerInt(min, max);
+
+                        switch (luminaria) {
+                            case 1:
+                                strcpy(pontosIp[validacaoIp].tipoTecnologia, TECNOLOGIA_MERCURIO);
+                                break;
+                            case 2:
+                                strcpy(pontosIp[validacaoIp].tipoTecnologia, TECNOLOGIA_SODIO);
+                                break;
+                            case 3:
+                                strcpy(pontosIp[validacaoIp].tipoTecnologia, TECNOLOGIA_LED);
+                                break;
+                        }
+                    }
+
                     printf("\nO Ponto IP ficou operacional? (0 - Nao / 1 - Sim): ");
                     novaIntervencao.operacional = lerInt(min, max);
 
-                    pontosIp[validacaoIp].estadoFuncionamento = novaIntervencao.operacional; // alterar o estado de funcionamento no pontosIp
+                    pontosIp[validacaoIp].estadoFuncionamento = novaIntervencao.operacional;
+                    gravarLog(novaIntervencao, idIp);
                 }
             }
         }
     } while (validacaoIp == -1);
+
+    return novaIntervencao;
+}
+
+int validarData(tipoData dataAvaria, tipoData dataIntervencao) {
+    int dataValida = 1;
+
+    if (dataAvaria.ano > dataIntervencao.ano) {
+        dataValida = 0;
+    } else {
+        if (dataAvaria.mes > dataIntervencao.mes) {
+            dataValida = 0;
+        } else {
+            if (dataAvaria.mes == dataIntervencao.mes) {
+                if (dataAvaria.dia > dataIntervencao.dia) {
+                    dataValida = 0;
+                } else {
+                    if (dataAvaria.dia == dataIntervencao.dia) {
+                        if (dataAvaria.hora > dataIntervencao.hora) {
+                            dataValida = 0;
+                        } else {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return dataValida;
+}
+
+void gravarLog(tipoIntervencao novaIntervencao, int idIp) {
+    FILE* ficheiroIntervencoes = fopen("intervencoes.txt", "a");
+
+    if (ficheiroIntervencoes != 0) {
+        fprintf(ficheiroIntervencoes, "Intervencao #%s: {", novaIntervencao.codIntervencao);
+        fprintf(ficheiroIntervencoes, "\n\tPonto #%d", idIp);
+        fprintf(ficheiroIntervencoes, "\n\tData: %2d/%2d/%4d %2d:%2d", novaIntervencao.dataIntervencao.dia, novaIntervencao.dataIntervencao.mes, novaIntervencao.dataIntervencao.ano, novaIntervencao.dataIntervencao.hora, novaIntervencao.dataIntervencao.minuto);
+        fprintf(ficheiroIntervencoes, "\n\tCusto da intervencao: %.2f", novaIntervencao.custoIntervencao);
+        fprintf(ficheiroIntervencoes, "\n\tSubstituida luminaria: %d", novaIntervencao.substituicaoLuminaria);
+        fprintf(ficheiroIntervencoes, "\n\tPonto ficou operacional: %d", novaIntervencao.operacional);
+        fprintf(ficheiroIntervencoes, "\n}\n");
+
+        fclose(ficheiroIntervencoes);
+    }
 }
 
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {

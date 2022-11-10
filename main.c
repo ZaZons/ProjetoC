@@ -45,12 +45,16 @@ int main() {
     switch (opcao) {
     case 1:
       nPontos = novoPontoIp(pontosIp, nPontos);
+
+      if (pontosIp[nPontos - 1].estadoFuncionamento == 0) {
+        nAvarias = registarAvaria(pontosIp, &nPontos, avarias, nAvarias, pontosIp[nPontos - 1].id);
+      }
       break;
     case 2:
-      nAvarias = registarAvaria(pontosIp, nPontos, avarias, nAvarias);
+      nAvarias = registarAvaria(pontosIp, &nPontos, avarias, nAvarias, 0);
       break;
     case 3:
-
+      nIntervencoes = registarIntervencao(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, avariasResolvidas);
       break;
     case 4:
 
@@ -73,9 +77,9 @@ int main() {
 int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed) {
   int opcao = 0;
 
-  printf("\tGestao de Pontos de Iluminacao Publica(IP)");
-  printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", nPontos, nAvarias);
-  printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.2f", avariasResolvidas, percLed);
+  printf("\t\n\nGestao de Pontos de Iluminacao Publica(IP)");
+  printf("\nTotal de pontos IP: %d\tPontos IP avariados: %d", nPontos, (nAvarias - avariasResolvidas));
+  printf("\nAvarias resolvidas: %d\tTecnologia LED (%%): %.2f", avariasResolvidas, percLed * 100);
   printf("\n   1. Novo ponto IP");
   printf("\n   2. Registo de Avaria");
   printf("\n   3. Registo de Intervencao");

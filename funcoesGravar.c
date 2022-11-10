@@ -46,7 +46,7 @@ void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAv
     FILE* saveFile = fopen("parque.dat", "wb");
 
     if (saveFile == 0) {
-        printf("\nErro ao abrir o ficheiro\n");
+        printf("\nErro ao abrir o ficheiro");
     } else {
         fwrite(pontosIp, sizeof(tipoIp), MAX_IP, saveFile);
         fwrite(nPontos, sizeof(int), 1, saveFile);
@@ -59,15 +59,18 @@ void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAv
 }
 
 int lerAbrirAoIniciar() {
-    FILE* abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "rb");
-    int abrirAoIniciar = 0;
+    FILE* abrirAoIniciarFile;
+    int abrirAoIniciar;
+    do {
+        abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "rb");
 
-    if (abrirAoIniciarFile == 0) {
-        printf("\nErro ao abrir o ficheiro");
-    } else {
-        fread(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
-        fclose(abrirAoIniciarFile);
-    }
+        if (abrirAoIniciarFile == 0) {
+            abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
+        } else {
+            fread(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
+        }
+    } while (abrirAoIniciarFile != 0);
+    fclose(abrirAoIniciarFile);
 
     return abrirAoIniciar;
 }

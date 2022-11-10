@@ -19,8 +19,8 @@ typedef struct {
   int id;
   char cpe[MAX_CPE];
   int potencia;
-  int estadoFuncionamento;
   char tipoTecnologia[MAX_TECNOLOGIA];
+  int estadoFuncionamento;
 } tipoIp;
 
 /**

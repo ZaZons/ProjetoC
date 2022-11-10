@@ -70,20 +70,11 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
             break;
     }
 
-    // Estado de funcionamento
-    int estadoFuncionamento;
-    min = 0;
-    max = 1;
-    printf("Insira o estado de funcionamento do ponto (0 - Avariado / 1 - Funcional): ");
-    estadoFuncionamento = lerInt(min, max);
-    novoPonto.estadoFuncionamento = estadoFuncionamento;
-
     // Tipo de tecnologia
     int intTipo;
     min = 1;
     max = 3;
     printf("Insira o tipo de luminaria do ponto (1 - %s / 2 - %s / 3 - %s): ", TECNOLOGIA_MERCURIO, TECNOLOGIA_SODIO, TECNOLOGIA_LED);
-    // intTipo = lerEscolhaMultipla(min, max);
     intTipo = lerInt(min, max);
 
     switch (intTipo) {
@@ -98,6 +89,14 @@ tipoIp lerDadosPontoIp(tipoIp pontosIp[], int nPontos) {
             break;
     }
 
+    // Estado de funcionamento
+    int estadoFuncionamento;
+    min = 0;
+    max = 1;
+    printf("Insira o estado de funcionamento do ponto (0 - Avariado / 1 - Funcional): ");
+    estadoFuncionamento = lerInt(min, max);
+    novoPonto.estadoFuncionamento = estadoFuncionamento;
+
     return novoPonto;
 }
 
@@ -110,7 +109,6 @@ int procuraPontoIp(tipoIp pontosIp[], int nPontos, int id) {
         }
     }
 
-printf("%d", pos);
     return pos;
 }
 

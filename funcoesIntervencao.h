@@ -10,14 +10,16 @@
 typedef struct {
     char codIntervencao[MAX_CODIGO_INTERVENCAO];
     tipoData dataIntervencao;
-    char cpe[MAX_CPE];
     char descricaoIntervencao[MAX_DESCRICAO_INTERVENCAO];
     float custoIntervencao;
     int substituicaoLuminaria;
     int operacional;
 } tipoIntervencao;
 
-void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
+int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas);
+tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
+int validarData(tipoData dataAvaria, tipoData dataIntervencao);
+void gravarLog(tipoIntervencao novaIntervancao, int idIp);
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED
