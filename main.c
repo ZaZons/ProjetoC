@@ -17,7 +17,7 @@
  * Importar valores para mostrar no menu
 */
 int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed);
-// void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
+void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 int main() {
   tipoIp pontosIp[MAX_IP];
@@ -90,16 +90,18 @@ int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed) {
   return opcao;
 }
 
-/* void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
-    int opcao;
+void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
+  int opcao;
 
-    printf("\nDeseja guardar os dados antes de sair? (1 - Sim / 0 - Nao) ");
-    opcao = lerInt(0, 1);
+  printf("\nDeseja guardar os dados antes de sair? (1 - Sim / 0 - Nao) ");
+  opcao = lerInt(0, 1);
 
-    if (opcao == 1) {
-        printf("\nDeseja carregar os dados gravados quando voltar a iniciar o programa?");
-        opcao = lerInt(0, 1);
+  if (opcao == 1) {
+      printf("\nDeseja carregar os dados gravados quando voltar a iniciar o programa?");
+      opcao = lerInt(0, 1);
 
-        gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, opcao);
-    }
-} */
+      gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, opcao);
+  }
+
+  printf("Adeus!!!");
+}
