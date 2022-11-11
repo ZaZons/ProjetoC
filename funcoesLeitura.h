@@ -31,7 +31,7 @@ void limparBufferStdin(void);
 //Caso nao seja inserido um valor correspondente entre o valor minimo e maximo, envia uma mensagem de erro e volta a pedir para inserir um valor inteiro
 int lerEscolhaMultipla(int min, int max);
 
-//Le e armazena a data e hora na estrtutra tipoData
+//Le e devolve a data e hora na estrtutra tipoData
 //Impoe valores minimos e maximos de acordo com o ano e mes selecionados
 tipoData lerData();
 

@@ -59,10 +59,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funcoesListagem.h" />
-		<Unit filename="funcoesSair.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="funcoesSair.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
