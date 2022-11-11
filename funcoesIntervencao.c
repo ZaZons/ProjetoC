@@ -7,9 +7,17 @@
 #include "funcoesAvaria.h"
 #include "funcoesIntervencao.h"
 
+<<<<<<< Updated upstream
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas) {
     if (nIntervencoes >= MAX_INTERVENCOES) {
         printf("\nERRO - Numero maximo de intervencoes atingido.");
+=======
+/*int validacaoIntervencao(int n1, int n2) {  A MAIS
+    int valor = 0;
+
+    if (n1 == n2) {
+        valor = 1;
+>>>>>>> Stashed changes
     } else {
         if (nAvarias == 0) {
             printf("\nERRO - Para registar intervencoes precisa de ter avarias registadas.");
@@ -23,8 +31,13 @@ int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], in
         }
     }
 
+<<<<<<< Updated upstream
     return nIntervencoes;
 }
+=======
+    return valor;
+}*/
+>>>>>>> Stashed changes
 
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     tipoIntervencao novaIntervencao;
