@@ -4,7 +4,7 @@
 #define MIN_ANO 2022
 #define MAX_ANO 2023
 
-typedef struct{
+typedef struct {
     int ano;
     int mes;
     int dia;
@@ -14,13 +14,13 @@ typedef struct{
 
 /**
  * Le e devolve um numero inteiro introduzido pelo utilizador, compreendido entre os valores min e max.
- * Se o valor nao estiver compreender entre o minimo e o maximo, apresenta uma mensagem de erro e repete a funcao
+ * Se o valor nao estiver compreendido entre o minimo e o maximo, apresenta uma mensagem de erro e repete a funcao.
  */
 int lerInt(int min, int max);
 
 /**
  * Le e devolve um numero decimal introduzido pelo utilizador, compreendido entre os valores min e max.
- * Se o valor nao estiver compreender entre o minimo e o maximo, apresenta uma mensagem de erro e repete a funcao
+ * Se o valor nao estiver compreendido entre o minimo e o maximo, apresenta uma mensagem de erro e repete a funcao.
  */
 float lerFloat(float min, float max);
 
@@ -37,7 +37,7 @@ void lerString(char vetor[], int max);
 void limparBufferStdin(void);
 
 /**
- * Le e devolve a data e hora na estrtutra tipoData.
+ * Le e devolve a data e hora na estrutura tipoData.
  * Impoe valores minimos e maximos de acordo com o ano e mes selecionados.
  */
 tipoData lerData();

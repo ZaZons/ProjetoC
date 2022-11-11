@@ -14,12 +14,12 @@
 #define MAX_ESCOLHA 6
 
 /**
- * Importar valores para mostrar no menu
+ * Mostra o menu inicial e devolve a opcao escolhida pelo utilizador.
  */
 int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed);
 
 /**
- * Funcao para sair, pergunta ao utilizador se quer guardar os dados para depois os carregar
+ * Pergunta ao utilizador se quer guardar os dados para depois os carregar e fecha o programa.
  */
 void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
