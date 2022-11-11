@@ -10,6 +10,20 @@
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas) {
     if (nIntervencoes >= MAX_INTERVENCOES) {
         printf("\nERRO - Numero maximo de intervencoes atingido.");
+    } else {
+        if (nAvarias == 0) {
+            printf("\nERRO - Para registar intervencoes precisa de ter avarias registadas.");
+        } else {
+            if (nAvariasResolvidas == nAvarias) {
+                printf("\nERRO - Todas as avarias estao resolvidas.");
+            } else {
+                intervencoes[nIntervencoes] = lerDadosIntervencao(pontosIp, nPontos, avarias, nAvarias);
+                nIntervencoes++;
+            }
+        }
+    }
+    return nIntervencoes;
+}
 
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias) {
     tipoIntervencao novaIntervencao;
