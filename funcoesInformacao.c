@@ -61,9 +61,9 @@ void mostrarPontosIpTecnologia(tipoIp pontosIp[], int nPontos) {
     percTecnologia(pontosIp, nPontos, TECNOLOGIA_LED, &percLED);
 
     printf("\nPercentagens de Tecnologias de Luminaria: {");
-    printf("\n\t%s: %.2f", TECNOLOGIA_MERCURIO, percMercurio);
-    printf("\n\t%s: %.2f", TECNOLOGIA_SODIO, percSodio);
-    printf("\n\t%s: %.2f", TECNOLOGIA_LED, percLED);
+    printf("\n\t%s: %.2f", TECNOLOGIA_MERCURIO, percMercurio * 100);
+    printf("\n\t%s: %.2f", TECNOLOGIA_SODIO, percSodio * 100);
+    printf("\n\t%s: %.2f", TECNOLOGIA_LED, percLED * 100);
     printf("\n}\n");
 }
 
