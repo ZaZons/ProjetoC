@@ -18,6 +18,10 @@
 *.map
 *.exp
 
+# Binary files
+*.dat
+*.txt
+
 # Precompiled Headers
 *.gch
 *.pch
