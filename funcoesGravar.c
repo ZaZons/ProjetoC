@@ -9,10 +9,11 @@
 #include "funcoesGravar.h"
 
 void gravarFicheiro(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int abrirAoIniciar) {
-    FILE *saveFile = fopen("parque.dat", "wb");
+    FILE *saveFile;
+    saveFile = fopen("parque.dat", "wb");
 
-    if (saveFile == NULL) {
-        printf("\nErro ao abrir o ficheiro\n");
+    if (saveFile == 0) {
+        printf("\nErro ao abrir o ficheiro");
     } else {
         if (abrirAoIniciar != -1) {
             gravarAbrirAoIniciar(abrirAoIniciar);
@@ -25,38 +26,38 @@ void gravarFicheiro(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nA
         fwrite(&nIntervencoes, sizeof(int), 1, saveFile);
         fclose(saveFile);
 
-        printf("\nDados guardados com sucesso.");
+        printf("Dados guardados com sucesso.");
     }
 }
 
 void gravarAbrirAoIniciar(int abrirAoIniciar) {
-    FILE *abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
+    FILE *abrirAoIniciarFile;
+    abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
 
-    if (abrirAoIniciarFile == NULL) {
+    if (abrirAoIniciarFile == 0) {
         printf("\nErro ao abrir o ficheiro");
     } else {
         fwrite(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
         fclose(abrirAoIniciarFile);
-
-        printf("\nDados guardados com sucesso.");
     }
 }
 
 void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAvarias, tipoIntervencao intervencoes[], int *nIntervencoes) {
-    FILE *saveFile = fopen("parque.dat", "wb");
+    FILE *saveFile;
+    saveFile = fopen("parque.dat", "rb");
 
-    if (saveFile == NULL) {
+    if (saveFile == 0) {
         printf("\nErro ao abrir o ficheiro");
     } else {
-        fwrite(pontosIp, sizeof(tipoIp), MAX_IP, saveFile);
-        fwrite(nPontos, sizeof(int), 1, saveFile);
-        fwrite(avarias, sizeof(tipoAvaria), MAX_AVARIAS, saveFile);
-        fwrite(nAvarias, sizeof(int), 1, saveFile);
-        fwrite(intervencoes, sizeof(tipoIntervencao), MAX_INTERVENCOES, saveFile);
-        fwrite(nIntervencoes, sizeof(int), 1, saveFile);
+        fread(pontosIp, sizeof(tipoIp), MAX_IP, saveFile);
+        fread(nPontos, sizeof(int), 1, saveFile);
+        fread(avarias, sizeof(tipoAvaria), MAX_AVARIAS, saveFile);
+        fread(nAvarias, sizeof(int), 1, saveFile);
+        fread(intervencoes, sizeof(tipoIntervencao), MAX_INTERVENCOES, saveFile);
+        fread(nIntervencoes, sizeof(int), 1, saveFile);
         fclose(saveFile);
 
-        printf("Ficheiro lido com sucesso.");
+        printf("Dados carregados com sucesso.");
     }
 }
 
@@ -66,12 +67,12 @@ int lerAbrirAoIniciar() {
     do {
         abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "rb");
 
-        if (abrirAoIniciarFile == NULL) {
+        if (abrirAoIniciarFile == 0) {
             abrirAoIniciarFile = fopen("abrirAoIniciar.dat", "wb");
         } else {
             fread(&abrirAoIniciar, sizeof(int), 1, abrirAoIniciarFile);
         }
-    } while (abrirAoIniciarFile != NULL);
+    } while (abrirAoIniciarFile == 0);
     fclose(abrirAoIniciarFile);
 
     return abrirAoIniciar;

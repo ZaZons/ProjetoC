@@ -45,6 +45,7 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
             if (pontosIp[validacaoIp].estadoFuncionamento == 1) {
                 printf("\nO ponto selecionado nao necessita de intervencao.");
             } else {
+                novaIntervencao.idPontoIp = idIp;
                 for(int i = 0; i < nAvarias; i++) {
                     if(avarias[i].idPontoIp == idIp) {
                         strcpy(novaIntervencao.codIntervencao, avarias[i].codRegisto);
@@ -109,7 +110,6 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
                     novaIntervencao.operacional = lerInt(min, max);
 
                     pontosIp[validacaoIp].estadoFuncionamento = novaIntervencao.operacional;
-                    gravarLog(novaIntervencao, idIp);
                 }
             }
         }
@@ -118,21 +118,22 @@ tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria a
     return novaIntervencao;
 }
 
-void gravarLog(tipoIntervencao novaIntervencao, int idIp) {
+void gravarLog(tipoIntervencao intervencoes[], int nIntervencoes) {
     FILE *ficheiroIntervencoes;
     ficheiroIntervencoes = fopen("intervencoes.txt", "w");
 
-    if (ficheiroIntervencoes == NULL) {
+    if (ficheiroIntervencoes == 0) {
         printf("\nErro ao abrir o ficheiro.");
     } else {
-        printf("dentro do ficheiro");
-        fprintf(ficheiroIntervencoes, "Intervencao #%s: {", novaIntervencao.codIntervencao);
-        fprintf(ficheiroIntervencoes, "\n\tPonto #%d", idIp);
-        fprintf(ficheiroIntervencoes, "\n\tData: %2d/%2d/%4d %2d:%2d", novaIntervencao.dataIntervencao.dia, novaIntervencao.dataIntervencao.mes, novaIntervencao.dataIntervencao.ano, novaIntervencao.dataIntervencao.hora, novaIntervencao.dataIntervencao.minuto);
-        fprintf(ficheiroIntervencoes, "\n\tCusto da intervencao: %.2f", novaIntervencao.custoIntervencao);
-        fprintf(ficheiroIntervencoes, "\n\tSubstituida luminaria: %d", novaIntervencao.substituicaoLuminaria);
-        fprintf(ficheiroIntervencoes, "\n\tPonto ficou operacional: %d", novaIntervencao.operacional);
-        fprintf(ficheiroIntervencoes, "\n}\n");
+        for (int i = 0; i < nIntervencoes; i++) {
+            fprintf(ficheiroIntervencoes, "Intervencao %s: {", intervencoes[i].codIntervencao);
+            fprintf(ficheiroIntervencoes, "\n\tPonto #%d", intervencoes[i].idPontoIp);
+            fprintf(ficheiroIntervencoes, "\n\tData: %2d/%2d/%4d %2d:%2d", intervencoes[i].dataIntervencao.dia, intervencoes[i].dataIntervencao.mes, intervencoes[i].dataIntervencao.ano, intervencoes[i].dataIntervencao.hora, intervencoes[i].dataIntervencao.minuto);
+            fprintf(ficheiroIntervencoes, "\n\tCusto da intervencao: %.2f", intervencoes[i].custoIntervencao);
+            fprintf(ficheiroIntervencoes, "\n\tSubstituida luminaria: %d", intervencoes[i].substituicaoLuminaria);
+            fprintf(ficheiroIntervencoes, "\n\tPonto ficou operacional: %d", intervencoes[i].operacional);
+            fprintf(ficheiroIntervencoes, "\n}\n");
+        }
     }
 
     fclose(ficheiroIntervencoes);
@@ -141,11 +142,11 @@ void gravarLog(tipoIntervencao novaIntervencao, int idIp) {
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     float custoTotalReparacoes = 0.0;
 
-    for (int i = 0; i < nAvarias; i++) {
-        if (avarias[i].idPontoIp == id) {
-            for (int j = 0; j < nIntervencoes; j++) {
-                if (strcmp(intervencoes[j].codIntervencao, avarias[i].codRegisto) == 0) {
-                    custoTotalReparacoes += intervencoes[j].custoIntervencao;
+    for (int i = 0; i < nIntervencoes; i++) {
+        if (intervencoes[i].idPontoIp == id) {
+            for (int j = 0; j < nAvarias; j++) {
+                if (strcmp(intervencoes[i].codIntervencao, avarias[j].codRegisto) == 0) {
+                    custoTotalReparacoes += intervencoes[i].custoIntervencao;
                 }
             }
         }

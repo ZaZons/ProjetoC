@@ -9,6 +9,7 @@
 
 typedef struct {
     char codIntervencao[MAX_CODIGO_INTERVENCAO];
+    int idPontoIp;
     tipoData dataIntervencao;
     char descricaoIntervencao[MAX_DESCRICAO_INTERVENCAO];
     float custoIntervencao;
@@ -18,7 +19,7 @@ typedef struct {
 
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas);
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
-void gravarLog(tipoIntervencao novaIntervancao, int idIp);
+void gravarLog(tipoIntervencao intervencoes[], int nIntervencoes);
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED

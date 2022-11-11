@@ -1,0 +1,7 @@
+Intervencao #2: {
+	Ponto #3
+	Data: 30/12/2023 12:12
+	Custo da intervencao: 69.69
+	Substituida luminaria: 1
+	Ponto ficou operacional: 1
+}

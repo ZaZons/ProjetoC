@@ -17,6 +17,10 @@
  * Importar valores para mostrar no menu
  */
 int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed);
+
+/**
+ * Funcao para sair, pergunta ao utilizador se quer guardar os dados para depois os carregar
+ */
 void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 int main() {
@@ -46,8 +50,7 @@ int main() {
         case 1:
             nPontos = novoPontoIp(pontosIp, nPontos);
 
-            if (pontosIp[nPontos - 1].estadoFuncionamento == 0)
-            {
+            if (pontosIp[nPontos - 1].estadoFuncionamento == 0) {
                 nAvarias = registarAvaria(pontosIp, &nPontos, avarias, nAvarias, pontosIp[nPontos - 1].id);
             }
             break;
@@ -56,6 +59,7 @@ int main() {
             break;
         case 3:
             nIntervencoes = registarIntervencao(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, avariasResolvidas);
+            gravarLog(intervencoes, nIntervencoes);
             break;
         case 4:
             mostrarListagem(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes);
@@ -98,16 +102,15 @@ int menu(int nPontos, int nAvarias, int avariasResolvidas, float percLed) {
 void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     int opcao;
 
-    printf("\nDeseja guardar os dados antes de sair? (1 - Sim / 0 - Nao) ");
+    printf("\nDeseja guardar os dados antes de sair? (1 - Sim / 0 - Nao): ");
     opcao = lerInt(0, 1);
 
-    if (opcao == 1)
-    {
-        printf("\nDeseja carregar os dados gravados quando voltar a iniciar o programa?");
+    if (opcao == 1) {
+        printf("Deseja carregar os dados gravados quando voltar a iniciar o programa? (1 - Sim / 0 - Nao): ");
         opcao = lerInt(0, 1);
 
         gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, opcao);
     }
 
-    printf("Adeus!!!");
+    printf("\nAdeus!!!");
 }

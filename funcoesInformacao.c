@@ -158,7 +158,7 @@ void mostrarAvariadoMais10Dias(tipoIp pontosIp[], int nPontos, tipoAvaria avaria
                 soma10Dias(&dataConsecutiva);
 
                 for (int k = 0; k < nIntervencoes; k++) {
-                    if (avarias[j].codRegisto == intervencoes[k].codIntervencao) {
+                    if (strcmp(avarias[j].codRegisto, intervencoes[k].codIntervencao) == 0) {
                         if (intervencoes[k].operacional == 1) {
                             if (intervencoes[k].dataIntervencao.ano > dataConsecutiva.ano) {
                                 contadorDiasConsecutivos++;
