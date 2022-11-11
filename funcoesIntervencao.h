@@ -17,18 +17,15 @@ typedef struct {
     int operacional;
 } tipoIntervencao;
 
-<<<<<<< Updated upstream
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas);
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 void gravarLog(tipoIntervencao intervencoes[], int nIntervencoes);
-=======
 //Pede um valor inteiro ao utilizador, procura se existe um PontoIp e uma avaria associadas a esse valor
 //Se existir o pontoIp e a avaria, pede a data e hora da intervencao, descric�o, custo, se foi substituida a luminaria e se o pontoIp ficou operacional
 //Altera o estado de funcionamento do pontoIp conforme inserido no operacional do registo de intervencao
 void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 
 //Calcula e devolve o custo total das intervencoes atraves de ciclos que verificam se existe uma intervencao associada a um PontoIp, somando o caso exista
->>>>>>> Stashed changes
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED

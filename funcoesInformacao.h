@@ -2,16 +2,12 @@
 #define FUNCOESINFORMACAO_H_INCLUDED
 //calcula e devolve por ponteiro a percentagem de pontos de um certo tipo de tecnologia de Luminária
 void percTecnologia(tipoIp pontosIp[], int nPontos, char tecnologia[], float *percTec);
-<<<<<<< Updated upstream
-int calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nAvarias);
-=======
 
 //Calcula e devolve por ponteiro a quantidade de avarias resolvidas
-void calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nAvarias,int *avariasR);
+int calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nAvarias);
 
 //Mostra no ecra as percentagens de tecnologias de luminaria, custo medio de intervencoes, o ponto Ip com maior numero de avarias registadas,
 //avarias registadas ate determinada data, pontoIp com maior numero de substituicao de luminarias, e avarias que demoraram mais de 10 dias consecutivos a serem intervencionadas
->>>>>>> Stashed changes
 void informacoes(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 //Executa a funcao percTecnologias e mostra no ecra as percentagens de tecnologias de luminarias utilizadas
