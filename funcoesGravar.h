@@ -8,15 +8,18 @@
 void gravarFicheiro(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int abrirAoIniciar);
 
 /**
- * Verifica se o ficheiro foi aberto devidamente e 
+ * Verifica se o ficheiro foi aberto devidamente e grava a opcao de carregar os dados quando o programa iniciar.
  */
 void gravarAbrirAoIniciar(int abrirAoIniciar);
 
-//Le e devolve valores que sao armazenados na estruturas tipoIp, tipoAvaria, tipoIntervencoes e as variaveis nPontos, nAvarias e nIntervencoes
+/**
+ * Le e devolve valores armazenados no ficheiro.
+ */
 void lerFicheiro(tipoIp pontosIp[], int *nPontos, tipoAvaria avarias[], int *nAvarias, tipoIntervencao intervencoes[], int *nIntervencoes);
 
-//Guarda num ficheiro binario os dados das estruturas tipoIp, tipoAvaria, tipoIntervencoes e as variaveis nPontos, nAvarias e nIntervencoes no ficheiro "parque.dat"
-//Verifica se o ficheiro foi aberto devidamente, apresenta mensagem de erro caso n�o seja aberto
+/**
+ * Le se a opcao de carregar os dados quando o programa iniciar.
+ */
 int lerAbrirAoIniciar();
 
 

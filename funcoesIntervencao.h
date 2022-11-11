@@ -17,25 +17,25 @@ typedef struct {
     int operacional;
 } tipoIntervencao;
 
-//Valida se é possivel criar um novo registo de intervencao, se possivel incrementa à variavel nIntervencoes
-//Se nIntervencoes for maior que o numero maximo ou nao houver avarias registadas, apresentadas mensagens de erro. S
+/**
+ * Adiciona uma intervencao ao vetor de intervencoes ja existentes e devolve a quantidade de intervencoes atualizada.
+ */
 int registarIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes, int nAvariasResolvidas);
 
-//Estrutura responsavel de guardar os dados inseridos pelo utilizador(data e hora de intervencao, descricao, custo, se foi substituida a luminaria, se for substituida que tecnologia foi utilizada
-//se for substituida que tecnologia foi utilizada, se o ponto ficou operacional)
-//Altera o valor de estado de funcionamento do pontoIp se na intervencao se afirmar que está operacional
+/**
+ * Obtem os dados da intervencao introduzidos pelo utilizador e armazena-os numa nova estrutura do tipo "tipoIntervencao".
+ * Devolve a estrutura da nova intervencao.
+ */
 tipoIntervencao lerDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
 
-//Grava os dados de tipoEstrutura intervencoes no ficheiro "intervencoes.txt"
-//Caso o ficheiro nao abra corretamento, é mostrado uma mensagem de erro
+/**
+ * Guarda informacao atualizada das intervencoes num Log (ficheiro de texto) sempre que uma nova intervencao e introduzida
+ */
 void gravarLog(tipoIntervencao intervencoes[], int nIntervencoes);
 
-//Pede um valor inteiro ao utilizador, procura se existe um PontoIp e uma avaria associadas a esse valor
-//Se existir o pontoIp e a avaria, pede a data e hora da intervencao, descric�o, custo, se foi substituida a luminaria e se o pontoIp ficou operacional
-//Altera o estado de funcionamento do pontoIp conforme inserido no operacional do registo de intervencao
-void obterDadosIntervencao(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias);
-
-//Calcula e devolve o custo total das intervencoes atraves de ciclos que verificam se existe uma intervencao associada a um PontoIp, somando o caso exista
+/**
+ * Calcula e devolve o custo total das intervencoes feitas a um ponto IP.
+ */
 float custoTotalIntervencoes(int id, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes);
 
 #endif // FUNCOESINTERVENCAO_H_INCLUDED
