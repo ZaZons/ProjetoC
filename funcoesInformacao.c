@@ -32,7 +32,7 @@ int calcularAvariasResolvidas(tipoIntervencao intervencoes[], int nIntervencoes)
 void informacoes(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, tipoIntervencao intervencoes[], int nIntervencoes) {
     if (nPontos > 0) {
         mostrarPontosIpTecnologia(pontosIp, nPontos);
-        
+
         if (nAvarias > 0) {
             mostrarPontoMaisAvarias(pontosIp, nPontos, avarias, nAvarias);
             mostrarAvariasAteData(avarias, nAvarias);
@@ -110,7 +110,7 @@ void mostrarAvariasAteData(tipoAvaria avarias[], int nAvarias) {
 
     for(int i = 0; i < nAvarias; i++) {
         int menor = validarData(avarias[i].dataAvaria, novaData);
-        
+
         if (menor == 1) {
             contadorMenorData++;
         }
@@ -141,7 +141,11 @@ void mostrarPontoMaisSubstituicao(tipoIp pontosIp[], int nPontos, tipoIntervenca
             }
         }
 
-        printf("\nPonto IP com maior numero de substituicao de luminarias: %d", auxId);
+        if (id == -1) {
+            printf("\nNenhuma luminaria foi substituida");
+        } else {
+            printf("\nPonto IP com maior numero de substituicao de luminarias: %d", auxId);
+        }
     }
 }
 

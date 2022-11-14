@@ -120,42 +120,28 @@ tipoData lerData() {
     return novaData;
 }
 
-int lerEscolhaMultipla(int min, int max) {
-    int n;
-
-    do {
-        scanf("%d", &n);
-        limparBufferStdin();
-
-        if (n < min || n > max) {
-            printf("\nERRO - Valor invalido\n\n");
-            printf("Insira um valor que esteja compreendido entre %d e %d: ", min, max);
-        }
-    } while (n < min || n > max);
-
-    return n;
-}
-
 int validarData(tipoData dataMenor, tipoData dataMaior) {
     int dataValida = 1;
 
     if (dataMenor.ano > dataMaior.ano) {
         dataValida = 0;
     } else {
-        if (dataMenor.mes > dataMaior.mes) {
-            dataValida = 0;
-        } else {
-            if (dataMenor.mes == dataMaior.mes) {
-                if (dataMenor.dia > dataMaior.dia) {
-                    dataValida = 0;
-                } else {
-                    if (dataMenor.dia == dataMaior.dia) {
-                        if (dataMenor.hora > dataMaior.hora) {
-                            dataValida = 0;
-                        } else {
-                            if (dataMenor.hora == dataMaior.hora) {
-                                if (dataMenor.minuto >= dataMaior.minuto) {
-                                    dataValida = 0;
+        if (dataMenor.ano == dataMaior.ano) {
+             if (dataMenor.mes > dataMaior.mes) {
+                dataValida = 0;
+            } else {
+                if (dataMenor.mes == dataMaior.mes) {
+                    if (dataMenor.dia > dataMaior.dia) {
+                        dataValida = 0;
+                    } else {
+                        if (dataMenor.dia == dataMaior.dia) {
+                            if (dataMenor.hora > dataMaior.hora) {
+                                dataValida = 0;
+                            } else {
+                                if (dataMenor.hora == dataMaior.hora) {
+                                    if (dataMenor.minuto >= dataMaior.minuto) {
+                                        dataValida = 0;
+                                    }
                                 }
                             }
                         }

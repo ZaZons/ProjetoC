@@ -110,6 +110,8 @@ void sair(tipoIp pontosIp[], int nPontos, tipoAvaria avarias[], int nAvarias, ti
         opcao = lerInt(0, 1);
 
         gravarFicheiro(pontosIp, nPontos, avarias, nAvarias, intervencoes, nIntervencoes, opcao);
+    } else {
+        gravarAbrirAoIniciar(0);
     }
 
     printf("\nAdeus!!!");
